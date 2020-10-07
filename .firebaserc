@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "my-musclememo": {
+      "hosting": {
+        "my-muscle-memo": [
+          "my-musclememo"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "my-musclememo"
+  }
+}

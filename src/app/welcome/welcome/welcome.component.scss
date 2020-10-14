@@ -1,0 +1,14 @@
+.header {
+  border-bottom: solid 1px #ddd;
+  &__inner {
+    margin: 0 auto;
+    padding: 16px 0 12px
+  }
+  &__logo {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1;
+  }
+}
+

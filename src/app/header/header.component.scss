@@ -1,0 +1,31 @@
+.header {
+  padding: 16px;
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__search {
+    display: flex;
+    border-radius: 8px;
+    background-color: steelblue;
+    border: 1px solid black;
+  }
+}
+
+.header-left {
+  display: flex;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  &__avatar {
+    background-size: cover;
+  }
+}

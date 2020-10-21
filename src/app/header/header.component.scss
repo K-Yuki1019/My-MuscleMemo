@@ -1,5 +1,7 @@
 .header {
   padding: 16px;
+  box-shadow: 0 -3px 8px 0 rgba(0, 0, 0, 0.5);
+  position: relative;
   &__logo {
     margin-right: 16px;
     font-size: 24px;

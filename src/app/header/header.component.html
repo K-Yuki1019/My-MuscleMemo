@@ -1,15 +1,15 @@
 <div class="header">
   <div class="header__inner">
-    <div class="header-left">
+    <div class="header-main">
       <p class="header__logo">
         <a routerLink="/">MuscleMemo</a>
       </p>
       <div class="header__search">
         <mat-icon class="search-icon">search</mat-icon>
-        <p>検索</p>
+        <p class="place-holder">MuscleMemoを検索</p>
       </div>
     </div>
-    <div class="header-right">
+    <div class="header-buttons">
       <div class="header__actions">
         <div class="actions">
           <ng-template #notlogin>
@@ -30,14 +30,39 @@
             ></button>
             <button
               mat-icon-button
-              class="actions__add"
+              class="actions__item"
               [matMenuTriggerFor]="menu"
             >
               <mat-icon>add</mat-icon>
             </button>
+            <button
+              mat-icon-button
+              class="actions__item"
+              [matMenuTriggerFor]="option"
+            >
+              <mat-icon>arrow_drop_down</mat-icon>
+            </button>
 
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item></button>
+            <mat-menu #menu="matMenu" xPosition="before" class="header__menu">
+              <button mat-menu-item>
+                <mat-icon>note_add</mat-icon>
+                <span>投稿する</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>note_add</mat-icon>
+                <span>投稿する2</span>
+              </button>
+            </mat-menu>
+
+            <mat-menu #option="matMenu" xPosition="before" class="header__menu">
+              <button mat-menu-item>
+                <mat-icon>note_add</mat-icon>
+                <span>マイメニュー</span>
+              </button>
+              <button mat-menu-item>
+                <mat-icon>note_add</mat-icon>
+                <span>設定とプライバシー</span>
+              </button>
             </mat-menu>
           </ng-container>
         </div>

@@ -1,23 +1,35 @@
 .header {
   padding: 16px;
+  &__logo {
+    margin-right: 16px;
+    font-size: 24px;
+  }
   &__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 auto;
   }
   &__search {
     display: flex;
-    border-radius: 8px;
-    background-color: steelblue;
-    border: 1px solid black;
+    border-radius: 30px;
+    background-color: rgb(219, 226, 233);
+    padding: 8px 60px 8px 8px;
   }
 }
-
-.header-left {
-  display: flex;
+.search-icon {
+  margin-right: 4px;
+}
+.place-holder {
+  font: black 0.6;
 }
 
-.header-right {
+.header-main {
+  display: flex;
+  align-items: center;
+}
+
+.header-buttons {
   display: flex;
   align-items: center;
 }
@@ -27,5 +39,15 @@
   align-items: center;
   &__avatar {
     background-size: cover;
+    margin-right: 16px;
+  }
+  &__item {
+    background-color: rgb(219, 226, 233);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    &:nth-of-type(even) {
+      margin-right: 16px;
+    }
   }
 }

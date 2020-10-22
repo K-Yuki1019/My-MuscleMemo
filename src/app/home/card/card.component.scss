@@ -1,6 +1,6 @@
 .card {
   border-radius: 4px;
-  box-shadow: 0 0 3px;
+  box-shadow: 0px 1px 2px #c3bfbf;
   background-color: white;
   &__inner {
     padding: 16px;
@@ -14,9 +14,6 @@
     background: #000;
     width: 100%;
   }
-  &__text {
-    font-size: 20px;
-  }
 }
 
 .header {
@@ -26,8 +23,8 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background: #000;
     margin-right: 16px;
+    background-size: cover;
   }
   &__user-name {
     margin-bottom: 4px;

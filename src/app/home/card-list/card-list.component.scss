@@ -1,4 +1,42 @@
 .list-container {
   max-width: 600px;
   margin: 0 auto;
+  padding: 16px;
+}
+
+.place-holder {
+  color: rgb(0, 0, 0, 0.5);
+}
+
+.form-card {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px #c3bfbf;
+  background-color: white;
+  padding: 16px;
+  &__inner {
+    display: flex;
+    align-items: center;
+  }
+  &__form {
+    background-color: #eef0f7;
+    border-radius: 20px;
+    padding: 8px 12px;
+    width: 100%;
+    flex: 1;
+    &:hover {
+      background-color: #e0e5f8;
+    }
+  }
+  &__avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+    background-size: cover;
+  }
+  &__divider {
+    border: 1px solid #d2d1d1;
+    width: auto;
+  }
 }

@@ -2,6 +2,10 @@
   padding: 16px;
   box-shadow: 0 -3px 8px 0 rgba(0, 0, 0, 0.5);
   position: relative;
+  &__main {
+    display: flex;
+    align-items: center;
+  }
   &__logo {
     margin-right: 16px;
     font-size: 24px;
@@ -18,22 +22,17 @@
     background-color: rgb(219, 226, 233);
     padding: 8px 60px 8px 8px;
   }
+  &__buttons {
+    display: flex;
+    align-items: center;
+  }
 }
 .search-icon {
   margin-right: 4px;
+  color: rgba(0, 0, 0, 0.5);
 }
 .place-holder {
-  font: black 0.6;
-}
-
-.header-main {
-  display: flex;
-  align-items: center;
-}
-
-.header-buttons {
-  display: flex;
-  align-items: center;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .actions {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Note, NoteWithUser } from '../interfaces/note';
 import { Observable, combineLatest, of } from 'rxjs';
 import { firestore } from 'firebase';
@@ -20,8 +20,9 @@ export class NoteService {
       text: noteData.text,
       todayMenu: noteData.todayMenu,
       weight: noteData.weight,
-      bodyFatPar: noteData.bodyFatPar,
+      bodyFatPer: noteData.bodyFatPer,
       userId: noteData.userId,
+      movieUrl: noteData.movieUrl,
     };
     return this.db.doc<Note>(`notes/${id}`).set(note);
   }

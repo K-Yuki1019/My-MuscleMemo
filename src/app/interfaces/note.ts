@@ -7,7 +7,8 @@ export interface Note {
   text: string;
   todayMenu: string;
   weight: string;
-  bodyFatPar: string;
+  bodyFatPer: string;
+  movieUrl: string;
   userId: string;
 }
 

@@ -23,58 +23,31 @@ export class CreateDialogComponent implements OnInit {
   menuGroups: MenuGroup[] = [
     {
       part: '腕',
-      menu: [
-        { value: 'ハンマーカール', viewValue: 'ハンマーカール' },
-        { value: 'ダンベルカール', viewValue: 'ダンベルカール' },
-      ],
+      menu: ['ハンマーカール', 'ダンベルカール'],
     },
     {
       part: 'お腹',
-      menu: [
-        { value: 'アブローラー', viewValue: 'アブローラー' },
-        { value: 'クランチ', viewValue: 'クランチ' },
-        { value: 'プランク', viewValue: 'プランク' },
-      ],
+      menu: ['アブローラー', 'クランチ', 'プランク'],
     },
     {
       part: '背中',
-      menu: [
-        { value: 'デッドリフト', viewValue: 'デッドリフト' },
-        { value: '懸垂', viewValue: '懸垂' },
-        { value: 'ダンベルプルオーバー', viewValue: 'ダンベルプルオーバー' },
-      ],
+      menu: ['デッドリフト', '懸垂', 'ダンベルプルオーバー'],
     },
     {
       part: '胸',
-      menu: [
-        { value: 'ダンベルフライ', viewValue: 'ダンベルフライ' },
-        { value: '腕立て伏せ', viewValue: '腕立て伏せ' },
-        { value: 'チェストプレス', viewValue: 'チェストプレス' },
-      ],
+      menu: ['ダンベルフライ', '腕立て伏せ', 'チェストプレス'],
     },
     {
       part: '肩',
-      menu: [
-        { value: 'サイドレイズ', viewValue: 'サイドレイズ' },
-        { value: 'アーノルドプレス', viewValue: 'アーノルドプレス' },
-        { value: 'ショルダープレス', viewValue: 'ショルダープレス' },
-      ],
+      menu: ['サイドレイズ', 'アーノルドプレス', 'ショルダープレス'],
     },
     {
       part: '脚',
-      menu: [
-        { value: 'スクワット', viewValue: 'スクワット' },
-        { value: 'バックランジ', viewValue: 'バックランジ' },
-        { value: 'レッグプレス', viewValue: 'レッグプレス' },
-      ],
+      menu: ['スクワット', 'バックランジ', 'レッグプレス'],
     },
     {
       part: '有酸素',
-      menu: [
-        { value: 'ランニング', viewValue: 'ランニング' },
-        { value: '縄跳び', viewValue: '縄跳び' },
-        { value: 'HIIT', viewValue: 'HIIT' },
-      ],
+      menu: ['ランニング', '縄跳び', 'HIIT'],
     },
   ];
 

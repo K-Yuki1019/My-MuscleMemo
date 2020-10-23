@@ -1,9 +1,7 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 
-admin.initializeApp(functions.config().firebase);
 export const db = admin.firestore();
-
 export const createUser = functions
   .region('asia-northeast1')
   .auth.user()
@@ -15,7 +13,3 @@ export const createUser = functions
     };
     return db.doc(`users/${user.uid}`).set(userData);
   });
-
-export const deleteUser = functions.auth.user().onDelete((user) => {
-  return db.doc(`users/${user.uid}`).delete();
-});

@@ -1,0 +1,87 @@
+<ng-container *ngIf="user$ | async as user">
+  <div class="heading">
+    <h2 mat-mat-dialog-title>投稿を作成する</h2>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="submit(user.uid)">
+    <mat-dialog-content class="form">
+      <mat-form-field appearance="standard" class="form__weight">
+        <mat-label>体重を入力</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="56.7kg"
+          autocomplete="off"
+          required
+          formControlName="weight"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="standard" class="form__bodyFatPer">
+        <mat-label>体脂肪率を入力</mat-label>
+        <input
+          type="text"
+          matInput
+          placeholder="23.4%"
+          autocomplete="off"
+          required
+          formControlName="bodyFatPer"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="standard" class="form__todayMenu">
+        <mat-label>トレーニングを選択</mat-label>
+        <mat-select formControlName="todayMenu">
+          <mat-option>-- None --</mat-option>
+          <mat-optgroup
+            *ngFor="let group of menuGroups"
+            [label]="group.part"
+            [disabled]="group.disabled"
+          >
+            <mat-option
+              *ngFor="let todayMenu of group.menu"
+              [value]="todayMenu"
+              >{{ todayMenu }}</mat-option
+            ></mat-optgroup
+          >
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="standard" class="form__movieUrl">
+        <mat-label>動画のURL等はこちら(任意)</mat-label>
+        <input
+          matInput
+          #formUrl
+          maxlength="400"
+          placeholder="ex)google.com"
+          autocomplete="off"
+          formControlName="movieUrl"
+        />
+        <mat-hint align="end">{{ formUrl.value.length }} / 400</mat-hint>
+      </mat-form-field>
+      <mat-form-field appearance="standard" class="form__text">
+        <mat-label>トレーニングの感想など</mat-label>
+        <textarea
+          matInput
+          #formText
+          maxlength="400"
+          placeholder="最近腹筋割れてきた！"
+          autocomplete="off"
+          required
+          formControlName="text"
+        ></textarea>
+        <mat-hint align="end">{{ formText.value.length }} / 400</mat-hint>
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-raised-button color="" matDialogClose type="button">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button
+        type="submit"
+        mat-raised-button
+        [mat-dialog-close]="true"
+        color="primary"
+        class="form__btn"
+      >
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-dialog-actions>
+  </form>
+</ng-container>

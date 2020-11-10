@@ -27,6 +27,7 @@
               class="actions__avatar"
               mat-icon-button
               [style.background-image]="'url(' + user.avatarUrl + ')'"
+              [matMenuTriggerFor]="mypageItem"
             ></button>
             <button
               mat-icon-button
@@ -42,6 +43,17 @@
             >
               <mat-icon>arrow_drop_down</mat-icon>
             </button>
+
+            <mat-menu
+              #mypageItem="matMenu"
+              xPosition="before"
+              class="header__menu"
+            >
+              <button mat-menu-item>
+                <mat-icon>note_add</mat-icon>
+                <a routerLink="mypage/{{ user.uid }}">マイページ</a>
+              </button>
+            </mat-menu>
 
             <mat-menu #menu="matMenu" xPosition="before" class="header__menu">
               <button mat-menu-item>

@@ -1,0 +1,5 @@
+<div class="test" *ngIf="user$ | async as user">
+  <ng-container>
+    <p>{{ user.userName }}はログインしています</p>
+  </ng-container>
+</div>

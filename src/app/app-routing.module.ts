@@ -4,7 +4,7 @@ import { ShellComponent } from './shell/shell.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'welcome',
     pathMatch: 'full',
     data: {
       root: true,
@@ -17,9 +17,14 @@ const routes: Routes = [
     component: ShellComponent,
     children: [
       {
-        path: 'home',
+        path: '',
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomeModule),
+      },
+      {
+        path: 'mypage/:id',
+        loadChildren: () =>
+          import('./mypage/mypage.module').then((m) => m.MypageModule),
       },
     ],
   },

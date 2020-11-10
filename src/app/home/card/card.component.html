@@ -57,7 +57,14 @@
                     <mat-icon class="items__logo">live_tv</mat-icon>
                     <div class="items__info">
                       <p class="items__small">動画のURL</p>
-                      <p class="items__main-value">{{ note.movieUrl }}</p>
+                      <p class="items__main-value">
+                        <a
+                          *ngIf="note.movieUrl"
+                          href="{{ note.movieUrl }}"
+                          target="_blank"
+                          >{{ note.movieUrl }}</a
+                        >
+                      </p>
                     </div>
                   </div>
                 </div>

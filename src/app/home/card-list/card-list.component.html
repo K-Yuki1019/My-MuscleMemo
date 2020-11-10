@@ -1,17 +1,19 @@
-<div class="list-container" *ngIf="user$ | async as user">
-  <div class="form-card">
-    <div class="form-card__inner">
-      <a
-        class="form-card__avatar"
-        [style.background-image]="'url(' + user.avatarUrl + ')'"
-      ></a>
-      <div class="form-card__form">
-        <p class="place-holder">
-          {{ user.userName }} さん、その気持ち、シェアしよう
-        </p>
+<div class="container" *ngIf="user$ | async as user">
+  <div class="wrapper">
+    <div class="form-card">
+      <div class="form-card__inner">
+        <a
+          class="form-card__avatar"
+          [style.background-image]="'url(' + user.avatarUrl + ')'"
+        ></a>
+        <div class="form-card__form">
+          <p class="place-holder">
+            {{ user.userName }} さん、その気持ち、シェアしよう
+          </p>
+        </div>
       </div>
+      <hr class="form-card__divider" />
     </div>
-    <hr class="form-card__divider" />
   </div>
 </div>
 <div class="card-list">

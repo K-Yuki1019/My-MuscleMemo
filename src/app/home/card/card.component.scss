@@ -2,23 +2,33 @@
   border-radius: 4px;
   box-shadow: 0px 1px 2px #c3bfbf;
   background-color: white;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
   &__inner {
     padding: 16px;
   }
   &__body {
-    padding: 16px;
+    padding: 0 16px 16px;
     display: grid;
+  }
+  &__body-header {
+    margin-bottom: 8px;
   }
   &__cover {
     padding-bottom: 52.5%;
     background: #000;
     width: 100%;
   }
+  &__items {
+    display: flex;
+  }
 }
 
 .header {
   display: flex;
   align-items: center;
+  margin-bottom: 16px;
   &__avatar {
     border-radius: 50%;
     width: 40px;
@@ -26,10 +36,83 @@
     margin-right: 16px;
     background-size: cover;
   }
+  &__time {
+    padding: 64px;
+    background-color: #e4e4e4;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(50%, -50%);
+    right: 16px;
+    top: 8px;
+  }
+  &__items {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 16px;
+  }
   &__user-name {
     margin-bottom: 4px;
   }
   &__date {
+    color: rgba(black, 0.6);
+  }
+}
+
+.content {
+  &__items-top {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 2px solid #d2d1d1;
+    margin-bottom: 16px;
+    max-width: 100%;
+  }
+  &__items-middle {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 2px solid #d2d1d1;
+    margin-bottom: 16px;
+    max-width: 100%;
+  }
+  &__items-bottom {
+    padding: 8px 24px;
+    overflow-wrap: break-word;
+  }
+}
+
+.items {
+  max-width: 300px;
+  &__small {
+    font-size: 8px;
+    color: rgba(black, 0.6);
+  }
+  &__values {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    gap: 16px;
+  }
+  &__main-value {
+    max-width: 240px;
+    font-weight: 600;
+    overflow-wrap: break-word;
+  }
+  &__logo {
+    margin-right: 24px;
+    font-size: 32px;
+    color: cornflowerblue;
+  }
+  &__text-logo {
+    padding-left: 70px;
+    margin-right: 16px;
+    font-size: 32px;
+    color: cornflowerblue;
+  }
+  &__text {
+    display: flex;
+    align-items: center;
+  }
+  &__differences {
+    font-size: 8px;
     color: rgba(black, 0.6);
   }
 }

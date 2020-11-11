@@ -55,7 +55,14 @@ export class CreateDialogComponent implements OnInit {
     text: ['', [Validators.required, Validators.maxLength(400)]],
     weight: ['', [Validators.required]],
     bodyFatPer: ['', [Validators.required]],
-    movieUrl: ['', [Validators.maxLength(400)]],
+    movieUrl: [
+      '',
+      [
+        Validators.pattern(
+          '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?'
+        ),
+      ],
+    ],
     todayMenu: ['', [Validators.required]],
   });
 

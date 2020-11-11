@@ -1,15 +1,31 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MypageComponent } from './mypage/mypage.component';
+import { ProfileComponent } from './profile/profile.component';
+import { NoteComponent } from './note/note.component';
+import { BodyImageComponent } from './body-image/body-image.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MypageComponent,
+  },
+  {
+    path: ':id',
+    component: MypageComponent,
     children: [
       {
-        path: ':id',
-        component: MypageComponent,
+        path: 'note',
+        component: NoteComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+      },
+
+      {
+        path: 'body-history',
+        component: BodyImageComponent,
       },
     ],
   },

@@ -1,5 +1,24 @@
-<div class="test" *ngIf="user$ | async as user">
-  <ng-container>
-    <p>{{ user.userName }}はログインしています</p>
-  </ng-container>
+<div class="mypage-container">
+  <div class="mypage" *ngIf="user$ | async as user">
+    <div class="mypage__info">
+      <div class="mypage__image-back">テストおおおおおお</div>
+      <div
+        class="mypage__image-avatar"
+        [style.background-image]="'url(' + user.avatarUrl + ')'"
+      ></div>
+      <div class="mypage__avatar-icon"></div>
+    </div>
+  </div>
+  <div>tesutttttttttt</div>
+  <p>テストおおおおおおおおお</p>
 </div>
+
+<nav mat-tab-nav-bar mat-align-tabs="center">
+  <a
+    mat-tab-link
+    *ngFor="let routerLink of routerLinks; let i = index"
+    [routerLink]="routerLink.link"
+    >{{ routerLink.label }}</a
+  >
+</nav>
+<router-outlet (activate)="onRecieve($event)"></router-outlet>

@@ -9,10 +9,6 @@ const routes: Routes = [
   {
     path: '',
     component: MypageComponent,
-  },
-  {
-    path: ':id',
-    component: MypageComponent,
     children: [
       {
         path: 'note',

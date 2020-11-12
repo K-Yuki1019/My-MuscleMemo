@@ -1,24 +1,32 @@
 <div class="mypage-container">
   <div class="mypage" *ngIf="user$ | async as user">
-    <div class="mypage__info">
-      <div class="mypage__image-back">テストおおおおおお</div>
+    <div class="mypage__images">
+      <img
+        src="http://placehold.jp/900x350.png"
+        alt=""
+        class="mypage__image-back"
+      />
       <div
         class="mypage__image-avatar"
         [style.background-image]="'url(' + user.avatarUrl + ')'"
       ></div>
       <div class="mypage__avatar-icon"></div>
     </div>
+    <div class="mypage__user-info">
+      <div class="mypage__user-name">
+        {{ user.userName }}
+      </div>
+    </div>
   </div>
-  <div>tesutttttttttt</div>
-  <p>テストおおおおおおおおお</p>
 </div>
-
-<nav mat-tab-nav-bar mat-align-tabs="center">
-  <a
-    mat-tab-link
-    *ngFor="let routerLink of routerLinks; let i = index"
-    [routerLink]="routerLink.link"
-    >{{ routerLink.label }}</a
-  >
-</nav>
-<router-outlet (activate)="onRecieve($event)"></router-outlet>
+<div class="mypage__contents">
+  <nav mat-tab-nav-bar mat-align-tabs="center" class="mypage__tabs">
+    <a
+      mat-tab-link
+      *ngFor="let routerLink of routerLinks; let i = index"
+      [routerLink]="routerLink.link"
+      >{{ routerLink.label }}</a
+    >
+  </nav>
+  <router-outlet (activate)="onRecieve($event)"></router-outlet>
+</div>

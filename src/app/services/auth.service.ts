@@ -31,7 +31,7 @@ export class AuthService {
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
     this.afAuth.signInWithPopup(provider);
-    this.router.navigateByUrl('home');
+    this.router.navigateByUrl('/');
   }
 
   logout() {

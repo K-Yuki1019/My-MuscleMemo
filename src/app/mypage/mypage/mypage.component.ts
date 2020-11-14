@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/interfaces/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -10,39 +12,44 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./mypage.component.scss'],
 })
 export class MypageComponent implements OnInit {
-  user$: Observable<User>;
-  uid: string;
-  childData: any;
+  activatedTab = 'profile';
+  userTabContents = [
+    { path: 'profile', label: 'プロフィール' },
+    { path: 'body-history', label: '体型記録一覧' },
+    { path: 'note', label: '投稿一覧' },
+  ];
 
-  routerLinks = [];
-  currentRoute = '';
-  activeLinkIndex = 0;
+  user$: Observable<User>;
+
+  userId$: Observable<string> = this.authService.user$.pipe(
+    map((user) => {
+      return user.uid;
+    })
+  );
+
+  profileId$: Observable<string> = this.route.paramMap.pipe(
+    map((param) => {
+      return param.get('id');
+    })
+  );
+
+  isMypage$: Observable<boolean> = combineLatest([
+    this.userId$,
+    this.profileId$,
+  ]).pipe(map(([userId, profileId]) => userId === profileId));
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService
-  ) {
-    this.routerLinks = [
-      { label: 'プロフィール', link: 'profile' },
-      { label: '投稿一覧', link: 'note' },
-      { label: '体型記録一覧', link: 'body-history' },
-    ];
-  }
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.init();
-  }
-
-  init() {
-    this.route.parent.paramMap.subscribe((map) => {
-      this.uid = map.get('id');
-    });
-    this.user$ = this.userService.getUser(this.uid);
-    console.log(this.uid);
-  }
-
-  onRecieve(eventData) {
-    this.childData = eventData;
+    this.user$ = this.route.paramMap.pipe(
+      switchMap((param) => {
+        const id = param.get('id');
+        return this.userService.getUser(id);
+      })
+    );
   }
 }

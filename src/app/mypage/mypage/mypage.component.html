@@ -19,14 +19,22 @@
     </div>
   </div>
 </div>
-<div class="mypage__contents">
-  <nav mat-tab-nav-bar mat-align-tabs="center" class="mypage__tabs">
-    <a
-      mat-tab-link
-      *ngFor="let routerLink of routerLinks; let i = index"
-      [routerLink]="routerLink.link"
-      >{{ routerLink.label }}</a
-    >
-  </nav>
-  <router-outlet (activate)="onRecieve($event)"></router-outlet>
+<div class="mypage__contents" *ngIf="isMypage$ | async">
+  <div class="tabs">
+    <div class="tabs__buttons">
+      <ng-container *ngFor="let userTabContent of userTabContents">
+        <a
+          [routerLink]="userTabContent.path"
+          routerLinkActive="active"
+          class="tabs__title"
+          (click)="activatedTab = userTabContent.path"
+          >{{ userTabContent.label }}</a
+        >
+        <div class="tabs__lamp {{ activatedTab }}"></div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<div class="tabs__content">
+  <router-outlet></router-outlet>
 </div>

@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="container container--editor">
+    <ng-container *ngIf="user$ | async as user">
+      <div class="form">
+        <h2 class="form__title">投稿を作成</h2>
+        <form [formGroup]="form">
+          <div class="form__items">
+            <div class="form__about-body">
+              <div class="form__body-weight">
+                <h2 class="form__description">体重を入力</h2>
+                <mat-form-field appearance="outline">
+                  <input
+                    type="text"
+                    matInput
+                    placeholder="55.0"
+                    autocomplete="off"
+                    required
+                    formControlName="bodyWeight"
+                  />
+                  <span matSuffix>kg</span>
+                </mat-form-field>
+              </div>
+              <div class="form__body-fat-per">
+                <h2 class="form__description">体脂肪率を入力</h2>
+                <mat-form-field appearance="outline">
+                  <input
+                    type="text"
+                    matInput
+                    placeholder="15.0"
+                    autocomplete="off"
+                    required
+                    formControlName="bodyFatPer"
+                  />
+                  <span matSuffix>%</span>
+                </mat-form-field>
+              </div>
+            </div>
+            <h2 class="form__description">動画のURLがあればこちら</h2>
+            <ng-container formArrayName="movieUrls">
+              <div
+                *ngFor="let movieUrl of movieUrls.controls; let i = index"
+                [formGroupName]="i"
+                class="urls-wrapper"
+              >
+                <mat-form-field appearance="outline" class="form__movie-urls">
+                  <input
+                    matInput
+                    #formUrl
+                    maxlength="400"
+                    placeholder="ex)google.com"
+                    autocomplete="off"
+                  />
+                  <mat-hint align="end"
+                    >{{ formUrl.value.length }} / 400</mat-hint
+                  >
+                </mat-form-field>
+                <button
+                  type="button"
+                  mat-icon-button
+                  (click)="removeMovieUrl(i)"
+                >
+                  <mat-icon>remove_circle</mat-icon>
+                </button>
+              </div>
+            </ng-container>
+            <button
+              class="add-url"
+              type="button"
+              (click)="addMovieUrl()"
+              mat-icon-button
+            >
+              <mat-icon>add_circle</mat-icon>
+            </button>
+
+            <h2 class="form__description">トレーニング内容を追加</h2>
+            <button mat-raised-button color="primary">追加</button>
+
+            <h2 class="form__description">今日の感想</h2>
+            <mat-form-field appearance="outline">
+              <textarea
+                matInput
+                #formText
+                maxlength="1000"
+                placeholder="最近腹筋割れてきた！"
+                autocomplete="off"
+                required
+                formControlName="text"
+              ></textarea>
+              <mat-hint align="end">{{ formText.length }} / 1000</mat-hint>
+            </mat-form-field>
+          </div>
+        </form>
+
+        <div class="form__actions">
+          <button mat-raised-button>作成</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

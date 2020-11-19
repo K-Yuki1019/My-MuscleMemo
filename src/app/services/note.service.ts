@@ -19,9 +19,11 @@ export class NoteService {
       createdAt: firestore.Timestamp.now(),
       text: noteData.text,
       todayMenu: noteData.todayMenu,
-      weight: noteData.weight,
+      bodyWeight: noteData.bodyWeight,
       bodyFatPer: noteData.bodyFatPer,
       userId: noteData.userId,
+      trainingWeight: noteData.trainingWeight,
+      rep: noteData.rep,
       movieUrl: noteData.movieUrl,
     };
     return this.db.doc<Note>(`notes/${id}`).set(note);

@@ -51,18 +51,14 @@
             >
               <button mat-menu-item>
                 <mat-icon>note_add</mat-icon>
-                <a routerLink="mypage/{{ user.uid }}">マイページ</a>
+                <a routerLink="/mypage/{{ user.uid }}">マイページ</a>
               </button>
             </mat-menu>
 
             <mat-menu #menu="matMenu" xPosition="before" class="header__menu">
               <button mat-menu-item>
                 <mat-icon>note_add</mat-icon>
-                <span (click)="openCreateDialog()">投稿する</span>
-              </button>
-              <button mat-menu-item>
-                <mat-icon>note_add</mat-icon>
-                <span>投稿する2</span>
+                <a routerLink="/editor">投稿する</a>
               </button>
             </mat-menu>
 

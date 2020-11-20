@@ -6,9 +6,11 @@ export interface Note {
   createdAt: firestore.Timestamp;
   text: string;
   todayMenu: string;
-  weight: string;
+  bodyWeight: string;
   bodyFatPer: string;
   movieUrl: string;
+  trainingWeight: string;
+  rep: string;
   userId: string;
 }
 

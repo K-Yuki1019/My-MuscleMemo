@@ -3,7 +3,6 @@ import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateDialogComponent } from '../dialogs/create-dialog/create-dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -23,13 +22,5 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     return this.authService.logout();
-  }
-
-  openCreateDialog() {
-    this.dialog.open(CreateDialogComponent, {
-      maxWidth: '100vh',
-      minWidth: '30%',
-      autoFocus: false,
-    });
   }
 }

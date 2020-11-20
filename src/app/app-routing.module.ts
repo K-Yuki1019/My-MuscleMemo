@@ -26,6 +26,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./mypage/mypage.module').then((m) => m.MypageModule),
       },
+      {
+        path: 'editor',
+        loadChildren: () =>
+          import('./editor/editor.module').then((m) => m.EditorModule),
+      },
     ],
   },
 ];

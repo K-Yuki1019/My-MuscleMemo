@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { ShellComponent } from './shell/shell.component';
 
 const routes: Routes = [
@@ -20,16 +21,22 @@ const routes: Routes = [
         path: '',
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomeModule),
+        canActivate: [AuthGuard],
+        canLoad: [AuthGuard],
       },
       {
         path: 'mypage/:id',
         loadChildren: () =>
           import('./mypage/mypage.module').then((m) => m.MypageModule),
+        canActivate: [AuthGuard],
+        canLoad: [AuthGuard],
       },
       {
         path: 'editor',
         loadChildren: () =>
           import('./editor/editor.module').then((m) => m.EditorModule),
+        canActivate: [AuthGuard],
+        canLoad: [AuthGuard],
       },
     ],
   },

@@ -8,9 +8,10 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { SelectMenuComponent } from './select-menu/select-menu.component';
 
 @NgModule({
-  declarations: [EditorComponent],
+  declarations: [EditorComponent, SelectMenuComponent],
   imports: [
     CommonModule,
     EditorRoutingModule,

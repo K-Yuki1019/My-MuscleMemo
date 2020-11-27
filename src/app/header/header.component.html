@@ -53,6 +53,10 @@
                 <mat-icon>note_add</mat-icon>
                 <a routerLink="/mypage/{{ user.uid }}">マイページ</a>
               </button>
+              <button mat-menu-item>
+                <mat-icon>note_add</mat-icon>
+                <a (click)="logout()">ログアウト</a>
+              </button>
             </mat-menu>
 
             <mat-menu #menu="matMenu" xPosition="before" class="header__menu">

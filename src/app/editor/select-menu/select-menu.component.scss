@@ -1,0 +1,75 @@
+.header {
+  background: linear-gradient(-90deg, #232a49, #2f3e8a);
+  &__inner {
+    padding: 32px 40px 8px;
+  }
+  &__description {
+    margin-bottom: 32px;
+  }
+  &__title {
+    color: #fff;
+  }
+  &__how-to {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  &__search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__search-form {
+    display: flex;
+    color: rgba(255, 255, 255, 0.6);
+    align-items: center;
+    background: rgb(165 165 165 / 40%);
+    border-radius: 20px;
+    padding-right: 32px;
+    height: 24px;
+  }
+  &__sort-button {
+    color: #455cd7;
+  }
+}
+
+.library {
+  margin: 24px 16px;
+  &__title {
+    color: #9ca1a3;
+    padding-bottom: 24px;
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+  }
+  &__item-title {
+    color: #1a2035;
+    font-weight: 700;
+    font-size: 24px;
+    padding-bottom: 4px;
+  }
+  &__item-tags {
+    padding: 4px;
+    color: #9ca1a3;
+    border: 1px solid #e0e1e3;
+    background-color: #f7f7f9;
+    margin-right: 8px;
+    overflow-wrap: break-word;
+  }
+  &__item-add {
+    color: #a3adf3;
+  }
+}
+
+.selected {
+  margin: 24px 16px;
+  &__title {
+    color: #9ca1a3;
+    padding-bottom: 24px;
+  }
+}
+
+.menu {
+  display: flex;
+}

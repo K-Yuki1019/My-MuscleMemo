@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { BodyImageComponent } from './body-image/body-image.component';
 import { NoteComponent } from './note/note.component';
 import { BodyImageCardComponent } from './body-image-card/body-image-card.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,6 @@ import { BodyImageCardComponent } from './body-image-card/body-image-card.compon
     NoteComponent,
     BodyImageCardComponent,
   ],
-  imports: [CommonModule, MypageRoutingModule, MatTabsModule],
+  imports: [CommonModule, MypageRoutingModule, MatTabsModule, MatIconModule],
 })
 export class MypageModule {}

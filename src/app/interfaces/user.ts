@@ -4,6 +4,6 @@ export interface User {
   avatarUrl: string;
   height: string;
   weight: string;
-  gender: 'men' | 'woman' | 'other';
-  description: 'string';
+  gender: 'man' | 'woman' | 'other';
+  description: string;
 }

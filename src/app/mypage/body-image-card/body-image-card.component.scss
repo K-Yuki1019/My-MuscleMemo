@@ -1,19 +1,23 @@
 .image-card {
-  padding: 24px 16px 34px 0px;
+  background-color: #eef0f7;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   &__content {
+    width: 232px;
     list-style: none;
     border: 1px #ddd solid;
     margin: 18px 0 0 18px;
+    background-color: #fff;
   }
-  &__header {
-    position: relative;
-  }
+
   &__date {
-    position: absolute;
-    top: 280px;
-    left: 30px;
+    color: #fff;
+    text-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.6);
+    text-align: left;
+    align-items: center;
+    position: relative;
+    bottom: 30px;
+    left: 16px;
   }
   &__avatar {
     border-radius: 50%;
@@ -23,10 +27,30 @@
     background-size: cover;
   }
   &__info {
+    padding: 8px;
     display: flex;
     align-items: center;
+    border-bottom: 1px #ddd solid;
+  }
+  &__user-data {
+    text-align: left;
+  }
+  &__data {
+    font-size: 14px;
+    color: #888;
   }
   &__body-info {
     display: flex;
+    overflow-wrap: break-word;
   }
+  &__active {
+    padding: 8px;
+  }
+  &__icon {
+    margin-right: 8px;
+  }
+}
+
+.time {
+  margin-right: 8px;
 }

@@ -16,6 +16,8 @@ export class BodyImageCardComponent implements OnInit {
       height: faker.random.objectElement([160, 170, 180, 199]),
       weight: faker.random.objectElement([40, 50, 60, 72]),
       gender: faker.name.gender(['man', 'woman', 'other']),
+      bodyImage: faker.image.imageUrl(),
+      likedCount: faker.random.number(50),
     };
   });
 

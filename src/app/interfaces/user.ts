@@ -5,5 +5,7 @@ export interface User {
   height: string;
   weight: string;
   gender: 'man' | 'woman' | 'other';
+  bodyImage: string;
   description: string;
+  likedCount: number;
 }

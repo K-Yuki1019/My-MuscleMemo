@@ -7,6 +7,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ProfileComponent } from './profile/profile.component';
 import { BodyImageComponent } from './body-image/body-image.component';
 import { NoteComponent } from './note/note.component';
+import { BodyImageCardComponent } from './body-image-card/body-image-card.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { NoteComponent } from './note/note.component';
     ProfileComponent,
     BodyImageComponent,
     NoteComponent,
+    BodyImageCardComponent,
   ],
-  imports: [CommonModule, MypageRoutingModule, MatTabsModule],
+  imports: [CommonModule, MypageRoutingModule, MatTabsModule, MatIconModule],
 })
 export class MypageModule {}

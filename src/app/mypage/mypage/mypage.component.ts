@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -20,6 +21,7 @@ export class MypageComponent implements OnInit {
   ];
 
   user$: Observable<User>;
+  userId: string;
 
   userId$: Observable<string> = this.authService.user$.pipe(
     map((user) => {
@@ -41,13 +43,26 @@ export class MypageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackBar: MatSnackBar
   ) {}
+
+  updateAvatar(event) {
+    if (event.target.files.length) {
+      const image = event.target.files[0];
+      this.userService.updateAvatar(this.userId, image).then(() => {
+        this.snackBar.open('画像をアップロードしました！', null, {
+          duration: 2000,
+        });
+      });
+    }
+  }
 
   ngOnInit(): void {
     this.user$ = this.route.paramMap.pipe(
       switchMap((param) => {
         const id = param.get('id');
+        this.userId = param.get('id');
         return this.userService.getUser(id);
       })
     );

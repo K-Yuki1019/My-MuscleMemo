@@ -10,6 +10,8 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 import { environment } from '../environments/environment';
 import { ShellComponent } from './shell/shell.component';
 import { HeaderComponent } from './header/header.component';
@@ -40,6 +42,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AngularFirestoreModule,
     AngularFireFunctionsModule,
     AngularFireAuthModule,
+    AngularFireStorageModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,

@@ -10,7 +10,22 @@
         class="mypage__image-avatar"
         [style.background-image]="'url(' + user.avatarUrl + ')'"
       ></div>
-      <div class="mypage__avatar-icon"></div>
+      <div class="mypage__avatar-icon">
+        <input
+          type="file"
+          style="display: none"
+          #avatarInput
+          (change)="updateAvatar($event)"
+          accept="image/png, image/jpeg"
+        />
+        <button
+          class="mypage__avatar-change-button"
+          (click)="avatarInput.click()"
+          mat-icon-button
+        >
+          <mat-icon>photo_camera</mat-icon>
+        </button>
+      </div>
     </div>
     <div class="mypage__user-info">
       <div class="mypage__user-name">

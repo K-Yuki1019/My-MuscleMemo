@@ -43,6 +43,13 @@
     padding: 0px;
     text-align: center;
   }
+  &__avatar-change-button {
+    position: absolute;
+    bottom: 150px;
+    right: 640px;
+    border-radius: 50%;
+    background-color: #e4e6eb;
+  }
 }
 
 .tabs {

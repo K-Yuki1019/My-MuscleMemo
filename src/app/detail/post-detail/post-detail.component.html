@@ -1,0 +1,222 @@
+<ng-container *ngIf="note$ | async as note">
+  <div class="detail">
+    <div class="detail__header">
+      <img [src]="note.user.avatarUrl" alt="" class="detail__avatar" />
+      <div class="detail__user-data">
+        <div class="detail__user-name">{{ note.user.userName }}</div>
+        <div class="detail__user-gender">{{ note.user.gender }}</div>
+        <div class="detail__height">{{ note.height }}</div>
+        <div class="detail__weight">{{ note.weight }}</div>
+      </div>
+    </div>
+    <div class="container--detail">
+      <div class="detail__content">
+        <div class="detail__main-contents">
+          <img
+            [style.background-image]="'url(' + note.user.avatarUrl + ')'"
+            alt=""
+            class="detail__main-image"
+          />
+          <div class="footer">
+            <div class="actions">
+              <button mat-button class="actions__btn">
+                <mat-icon>favorite_border</mat-icon>
+                <span>お気に入り (fav数)</span>
+              </button>
+              <button mat-button class="actions__btn">
+                <mat-icon>textsms</mat-icon>
+                <span>コメント(com数)</span>
+              </button>
+            </div>
+            <div class="comment">
+              <div class="comment__title">
+                <p>〇〇さんへのコメント</p>
+              </div>
+              <div class="comment__inner">
+                <div class="comment__contents">
+                  <p>No Comment</p>
+                </div>
+                <form class="comment__form" [formGroup]="form">
+                  <div class="comment__head">
+                    <img
+                      class="comment__avatar"
+                      [src]="note.user.avatarUrl"
+                      alt=""
+                    />
+                    <mat-form-field
+                      floatLabel="always"
+                      appearance="outline"
+                      class="comment__textarea"
+                    >
+                      <mat-label>コメントを書く</mat-label>
+                      <textarea
+                        formControlName="comment"
+                        placeholder="test"
+                        autofocus
+                        autocomplete="off"
+                        matInput
+                        matTextareaAutosize
+                        #body
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                  <div class="comment__action">
+                    <button
+                      class="comment__submit"
+                      mat-flat-button
+                      color="primary"
+                      [disabled]="form.invalid || form.pristine"
+                    >
+                      コメントを送信
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="recent-posts">
+              <p class="recent-posts__title">
+                {{ note.user.userName }}の最近の投稿
+              </p>
+              <div class="recent-posts__cards">
+                <div class="recent-posts__card-inner">
+                  <div class="recent-posts__card">
+                    <img src="https://placehold.jp/175x230.png" alt="" />
+                    <div class="recent-posts__footer">
+                      <button mat-button>
+                        <mat-icon>favorite_border</mat-icon>
+                        <span class="recent-posts__fav-count">14</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="recent-posts__card-inner">
+                  <div class="recent-posts__card">
+                    <img src="https://placehold.jp/175x230.png" alt="" />
+                    <div class="recent-posts__footer">
+                      <button mat-button>
+                        <mat-icon>favorite_border</mat-icon>
+                        <span class="recent-posts__fav-count">18</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="recent-posts__card-inner">
+                  <div class="recent-posts__card">
+                    <img src="https://placehold.jp/175x230.png" alt="" />
+                    <div class="recent-posts__footer">
+                      <button mat-button>
+                        <mat-icon>favorite_border</mat-icon>
+                        <span class="recent-posts__fav-count">4</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="recent-posts__actions">
+              <button class="recent-posts__btn">もっと見る</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail__about">
+          <div class="about">
+            <div class="about__inner">
+              <div class="about__title">
+                {{ note.user.userName }}の今日の記録
+              </div>
+              <div class="about__detail-card">
+                <div class="about__value">
+                  <div class="about__now-value">
+                    <mat-icon inline>speed</mat-icon>
+                    体重：　{{ note.weight }} kg
+                  </div>
+                  <div class="about__lose-value">-４kg</div>
+                </div>
+                <div class="about__value">
+                  <div class="about__now-value">
+                    <mat-icon inline>speed</mat-icon>
+                    体脂肪率：　{{ note.bodyFatPer }} %
+                  </div>
+                  <div class="about__lose-value">-1%</div>
+                </div>
+                <div class="about__description">{{ note.text }}</div>
+                <div class="about__time">
+                  <mat-icon inline>access_time</mat-icon>
+                  {{ note.createdAt.toDate() | date: 'yyyy/MM/dd' }}
+                </div>
+              </div>
+            </div>
+            <div class="about__inner">
+              <div class="about__title">今日使った動画</div>
+              <div class="about__movie-card">
+                <div class="about__movie-url">
+                  <img
+                    src="https://placehold.jp/100x70.png"
+                    alt=""
+                    class="about__movie-img"
+                  />
+                  <div class="about__movie-detail">
+                    <p class="about__movie-title">Lorem, ipsum dolor.</p>
+                    <p class="about__movie-type">Youtubeの動画 10分</p>
+                  </div>
+                </div>
+                <div class="about__movie-url">
+                  <img
+                    src="https://placehold.jp/100x70.png"
+                    alt=""
+                    class="about__movie-img"
+                  />
+                  <div class="about__movie-detail">
+                    <p class="about__movie-title">Lorem, ipsum dolor.</p>
+                    <p class="about__movie-type">Youtubeの動画 10分</p>
+                  </div>
+                </div>
+                <div class="about__movie-url">
+                  <img
+                    src="https://placehold.jp/100x70.png"
+                    alt=""
+                    class="about__movie-img"
+                  />
+                  <div class="about__movie-detail">
+                    <p class="about__movie-title">Lorem, ipsum dolor.</p>
+                    <p class="about__movie-type">Youtubeの動画 10分</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="about__inner">
+              <div class="about__title">今日のメニュー</div>
+              <div class="about__menu">
+                <div class="about__menu-detail">
+                  <div class="about__menu-item">
+                    <mat-icon inline>fitness_center</mat-icon>
+                    {{ note.todayMenu }}:
+                  </div>
+                  <div class="about__menu-item">10kg ×</div>
+                  <div class="about__menu-item">15 回</div>
+                </div>
+                <div class="about__menu-detail">
+                  <div class="about__menu-item">
+                    <mat-icon inline>fitness_center</mat-icon>
+                    {{ note.todayMenu }}:
+                  </div>
+                  <div class="about__menu-item">15kg ×</div>
+                  <div class="about__menu-item">10 回</div>
+                </div>
+                <div class="about__menu-detail">
+                  <div class="about__menu-item">
+                    <mat-icon inline>fitness_center</mat-icon>
+                    {{ note.todayMenu }}:
+                  </div>
+                  <div class="about__menu-item">20kg ×</div>
+                  <div class="about__menu-item">8 回</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

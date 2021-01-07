@@ -1,97 +1,99 @@
 <div class="container container--card">
   <ng-container *ngIf="note">
-    <div class="card">
-      <div class="card__inner">
-        <div class="card__header">
-          <div class="header">
-            <div class="header__item">
-              <button
-                mat-icon-button
-                class="header__avatar"
-                [style.background-image]="'url(' + note.user.avatarUrl + ')'"
-              ></button>
-            </div>
-            <div class="header__item">
-              <div class="header__user-name">{{ note.user.userName }}</div>
-              <div class="header__date">
-                {{ note.createdAt.toDate() | date: 'yyyy/MM/dd' }}
+    <a routerLink="/detail/{{ note.noteId }}">
+      <div class="card">
+        <div class="card__inner">
+          <div class="card__header">
+            <div class="header">
+              <div class="header__item">
+                <button
+                  mat-icon-button
+                  class="header__avatar"
+                  [style.background-image]="'url(' + note.user.avatarUrl + ')'"
+                ></button>
               </div>
-              <div class="header__time"></div>
+              <div class="header__item">
+                <div class="header__user-name">{{ note.user.userName }}</div>
+                <div class="header__date">
+                  {{ note.createdAt.toDate() | date: 'yyyy/MM/dd' }}
+                </div>
+                <div class="header__time"></div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="card__content">
-          <div class="content">
-            <div class="content__data">
-              <div class="content__items-top">
-                <div class="items">
-                  <div class="items__values">
-                    <mat-icon class="items__logo">speed</mat-icon>
-                    <div class="items__weight-figure">
-                      <div class="items__small">- 〇〇kg!!</div>
-                      <div class="items__record">
+          <div class="card__content">
+            <div class="content">
+              <div class="content__data">
+                <div class="content__items-top">
+                  <div class="items">
+                    <div class="items__values">
+                      <mat-icon class="items__logo">speed</mat-icon>
+                      <div class="items__weight-figure">
+                        <div class="items__small">- 〇〇kg!!</div>
+                        <div class="items__record">
+                          <p class="items__main-value">
+                            体重: {{ note.weight }} kg
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="items">
+                    <div class="items__values">
+                      <mat-icon class="items__logo">speed</mat-icon>
+                      <div class="items__fat-per-figure">
+                        <div class="items__small">- 〇〇％!!</div>
+                        <div class="items__main-value">
+                          体脂肪率: {{ note.bodyFatPer }} %
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="content__items-middle">
+                  <div class="items">
+                    <div class="items__values">
+                      <mat-icon class="items__logo">live_tv</mat-icon>
+                      <div class="items__info">
+                        <p class="items__small">動画のURL</p>
                         <p class="items__main-value">
-                          体重: {{ note.bodyWeight }} kg
+                          <a
+                            *ngIf="note.movieUrl"
+                            href="{{ note.movieUrl }}"
+                            target="_blank"
+                            >{{ note.movieUrl }}</a
+                          >
                         </p>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="items">
-                  <div class="items__values">
-                    <mat-icon class="items__logo">speed</mat-icon>
-                    <div class="items__fat-per-figure">
-                      <div class="items__small">- 〇〇％!!</div>
-                      <div class="items__main-value">
-                        体脂肪率: {{ note.bodyFatPer }} %
+                  <div class="items">
+                    <div class="items__values">
+                      <mat-icon class="items__logo">fitness_center</mat-icon>
+                      <div class="items__info">
+                        <p class="items__small">今日の筋トレメニュー</p>
+                        <p class="items__main-value">{{ note.todayMenu }}</p>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="content__items-middle">
-                <div class="items">
-                  <div class="items__values">
-                    <mat-icon class="items__logo">live_tv</mat-icon>
-                    <div class="items__info">
-                      <p class="items__small">動画のURL</p>
-                      <p class="items__main-value">
-                        <a
-                          *ngIf="note.movieUrl"
-                          href="{{ note.movieUrl }}"
-                          target="_blank"
-                          >{{ note.movieUrl }}</a
-                        >
-                      </p>
-                    </div>
+                <div class="content__items-bottom">
+                  <div class="items-text">
+                    <p>{{ note.text }}</p>
                   </div>
-                </div>
-                <div class="items">
-                  <div class="items__values">
-                    <mat-icon class="items__logo">fitness_center</mat-icon>
-                    <div class="items__info">
-                      <p class="items__small">今日の筋トレメニュー</p>
-                      <p class="items__main-value">{{ note.todayMenu }}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="content__items-bottom">
-                <div class="items-text">
-                  <p>{{ note.text }}</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="card__body">
-          <div class="card__body-header"></div>
-          <div class="card__cover"></div>
+          <div class="card__body">
+            <div class="card__body-header"></div>
+            <div class="card__cover"></div>
+          </div>
         </div>
       </div>
-    </div>
+    </a>
   </ng-container>
 </div>

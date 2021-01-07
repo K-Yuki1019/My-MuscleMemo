@@ -12,10 +12,15 @@ export const createUser = functions
       uid: user.uid,
       userName: user.displayName,
       avatarUrl: user.photoURL,
+      gender: 'male',
+      createdAt: new Date(),
     };
     return db.doc(`users/${user.uid}`).set(userData);
   });
 
-export const deleteUser = functions.auth.user().onDelete((user) => {
-  return db.doc(`users/${user.uid}`).delete();
-});
+export const deleteUser = functions
+  .region('asia-northeast1')
+  .auth.user()
+  .onDelete((user) => {
+    return db.doc(`users/${user.uid}`).delete();
+  });

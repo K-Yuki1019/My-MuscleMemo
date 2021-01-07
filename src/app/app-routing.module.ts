@@ -38,6 +38,11 @@ const routes: Routes = [
         canActivate: [AuthGuard],
         canLoad: [AuthGuard],
       },
+      {
+        path: 'detail/:noteId',
+        loadChildren: () =>
+          import('./detail/detail.module').then((m) => m.DetailModule),
+      },
     ],
   },
 ];

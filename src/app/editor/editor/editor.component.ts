@@ -105,7 +105,8 @@ export class EditorComponent implements OnInit {
     const formData: Omit<Note, 'noteId' | 'createdAt'> = {
       text: value.text,
       todayMenu: value.todayMenu,
-      bodyWeight: value.bodyWeight,
+      weight: value.weight,
+      height: value.height,
       bodyFatPer: value.bodyFatPer,
       movieUrl: value.movieUrl,
       trainingWeight: value.trainingWeight,

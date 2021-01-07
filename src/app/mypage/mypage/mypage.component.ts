@@ -3,8 +3,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { NoteWithUser } from 'src/app/interfaces/note';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { NoteService } from 'src/app/services/note.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -22,6 +24,13 @@ export class MypageComponent implements OnInit {
 
   user$: Observable<User>;
   userId: string;
+
+  noteWithUser$: Observable<NoteWithUser> = this.route.paramMap.pipe(
+    switchMap((param) => {
+      const id = param.get('noteId');
+      return this.noteService.getNoteWithUserByNoteId(id);
+    })
+  );
 
   userId$: Observable<string> = this.authService.user$.pipe(
     map((user) => {
@@ -44,7 +53,8 @@ export class MypageComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private authService: AuthService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private noteService: NoteService
   ) {}
 
   updateAvatar(event) {

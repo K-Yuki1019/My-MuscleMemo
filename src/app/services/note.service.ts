@@ -19,7 +19,8 @@ export class NoteService {
       createdAt: firestore.Timestamp.now(),
       text: noteData.text,
       todayMenu: noteData.todayMenu,
-      bodyWeight: noteData.bodyWeight,
+      weight: noteData.weight,
+      height: noteData.height,
       bodyFatPer: noteData.bodyFatPer,
       userId: noteData.userId,
       trainingWeight: noteData.trainingWeight,
@@ -40,7 +41,7 @@ export class NoteService {
       .pipe(
         switchMap((note: Note) => {
           const user$: Observable<User> = this.db
-            .doc<User>(`user/${note.userId}`)
+            .doc<User>(`users/${note.userId}`)
             .valueChanges();
           return combineLatest([user$, of(note)]);
         }),

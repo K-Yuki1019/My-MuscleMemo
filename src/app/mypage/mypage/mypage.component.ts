@@ -17,9 +17,9 @@ import { UserService } from 'src/app/services/user.service';
 export class MypageComponent implements OnInit {
   activatedTab = 'profile';
   userTabContents = [
-    { path: 'profile', label: 'プロフィール' },
-    { path: 'body-history', label: '体型記録一覧' },
     { path: 'note', label: '投稿一覧' },
+    { path: 'body-history', label: '体型記録一覧' },
+    { path: 'profile', label: 'プロフィール編集' },
   ];
 
   user$: Observable<User>;
@@ -52,7 +52,7 @@ export class MypageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private authService: AuthService,
+    public authService: AuthService,
     private snackBar: MatSnackBar,
     private noteService: NoteService
   ) {}

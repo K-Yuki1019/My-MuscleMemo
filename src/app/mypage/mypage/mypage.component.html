@@ -1,55 +1,53 @@
 <div class="mypage-container">
   <div class="mypage" *ngIf="user$ | async as user">
-    <div class="mypage__images">
-      <img
-        src="http://placehold.jp/900x350.png"
-        alt=""
-        class="mypage__image-back"
-      />
-      <div
-        class="mypage__image-avatar"
-        [style.background-image]="'url(' + user.avatarUrl + ')'"
-      ></div>
-      <div class="mypage__avatar-icon">
-        <input
-          type="file"
-          style="display: none"
-          #avatarInput
-          (change)="updateAvatar($event)"
-          accept="image/png, image/jpeg"
-        />
-        <button
-          class="mypage__avatar-change-button"
-          (click)="avatarInput.click()"
-          mat-icon-button
-        >
-          <mat-icon>photo_camera</mat-icon>
-        </button>
-      </div>
-    </div>
-    <div class="mypage__user-info">
-      <div class="mypage__user-name">
-        {{ user.userName }}
+    <div class="mypage__author">
+      <img class="mypage__image-avatar" [src]="user.avatarUrl" alt="" />
+      <div class="mypage__user-info">
+        <div class="mypage__user-header">
+          <div class="mypage__user-name">
+            {{ user.userName }}
+          </div>
+          <ng-container *ngIf="user.uid === authService.uid">
+            <button
+              mat-raised-button
+              class="mypage__edit-btn"
+              routerLink="/setting"
+            >
+              編集
+            </button>
+          </ng-container>
+        </div>
+        <div class="mypage__user-data">
+          <p class="mypage__data-item">167cm |</p>
+          <p class="mypage__data-item">85kg |</p>
+          <p class="mypage__data-item">man |</p>
+        </div>
+        <p class="mypage__user.introduction">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
+          suscipit perferendis voluptatem, harum quis explicabo, rerum officiis
+          dignissimos repudiandae ducimus vitae odio, eum atque quam nihil nobis
+          itaque inventore veritatis!
+        </p>
       </div>
     </div>
   </div>
-</div>
-<div class="mypage__contents" *ngIf="isMypage$ | async">
-  <div class="tabs">
-    <div class="tabs__buttons">
-      <ng-container *ngFor="let userTabContent of userTabContents">
-        <a
-          [routerLink]="userTabContent.path"
-          routerLinkActive="active"
-          class="tabs__title"
-          (click)="activatedTab = userTabContent.path"
-          >{{ userTabContent.label }}</a
-        >
-        <div class="tabs__lamp {{ activatedTab }}"></div>
-      </ng-container>
+  <div class="mypage__contents" *ngIf="isMypage$ | async">
+    <div class="tabs">
+      <div class="tabs__buttons">
+        <ng-container *ngFor="let userTabContent of userTabContents">
+          <a
+            [routerLink]="userTabContent.path"
+            routerLinkActive="active"
+            class="tabs__title"
+            (click)="activatedTab = userTabContent.path"
+            >{{ userTabContent.label }}</a
+          >
+          <div class="tabs__lamp {{ activatedTab }}"></div>
+        </ng-container>
+      </div>
     </div>
   </div>
-</div>
-<div class="tabs__content">
-  <router-outlet></router-outlet>
+  <div class="tabs__content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

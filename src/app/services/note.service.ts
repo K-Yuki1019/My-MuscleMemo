@@ -34,6 +34,32 @@ export class NoteService {
     return this.db.doc<Note>(`notes/${noteId}`).valueChanges();
   }
 
+  getNotes(
+    uid: string,
+    lastNote?: Note
+  ): Observable<{ notes: Note[]; lastNote: Note }> {
+    const note$ = this.db
+      .collection<Note>('notes', (ref) => {
+        let query = ref
+          .where('uid', '==', uid)
+          .orderBy('createdAt', 'desc')
+          .limit(30);
+        if (lastNote) {
+          query = query.startAfter(lastNote.createdAt);
+        }
+        return query;
+      })
+      .valueChanges();
+    return note$.pipe(
+      map((notes) => {
+        return {
+          notes,
+          lastNote: notes[notes.length - 1],
+        };
+      })
+    );
+  }
+
   getNoteWithUserByNoteId(noteId: string): Observable<NoteWithUser> {
     return this.db
       .doc(`notes/${noteId}`)

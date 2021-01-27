@@ -6,10 +6,9 @@
   position: relative;
   overflow: hidden;
   &__inner {
-    padding: 16px;
+    padding: 24px 32px;
   }
   &__body {
-    padding: 0 16px 16px;
     display: grid;
   }
   &__body-header {
@@ -36,15 +35,6 @@
     margin-right: 16px;
     background-size: cover;
   }
-  &__time {
-    padding: 64px;
-    background-color: #e4e4e4;
-    border-radius: 50%;
-    position: absolute;
-    transform: translate(50%, -50%);
-    right: 16px;
-    top: 8px;
-  }
   &__items {
     display: flex;
     align-items: center;
@@ -52,6 +42,8 @@
     margin-bottom: 16px;
   }
   &__user-name {
+    text-align: left;
+    font-weight: 700;
     margin-bottom: 4px;
   }
   &__date {

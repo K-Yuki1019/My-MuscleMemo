@@ -17,7 +17,6 @@
                 <div class="header__date">
                   {{ note.createdAt.toDate() | date: 'yyyy/MM/dd' }}
                 </div>
-                <div class="header__time"></div>
               </div>
             </div>
           </div>
@@ -74,7 +73,9 @@
                       <mat-icon class="items__logo">fitness_center</mat-icon>
                       <div class="items__info">
                         <p class="items__small">今日の筋トレメニュー</p>
-                        <p class="items__main-value">{{ note.todayMenu }}</p>
+                        <p class="items__main-value">
+                          {{ note.todayMenu }}
+                        </p>
                       </div>
                     </div>
                   </div>

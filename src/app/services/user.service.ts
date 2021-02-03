@@ -25,4 +25,11 @@ export class UserService {
       avatarURL,
     });
   }
+
+  updateUser(
+    uid: string,
+    userFormValue: Pick<User, 'userName' | 'gender' | 'introduction' | 'height'>
+  ): Promise<void> {
+    return this.db.doc<User>(`users/${uid}`).update(userFormValue);
+  }
 }

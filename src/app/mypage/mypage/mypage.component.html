@@ -11,22 +11,19 @@
             <button
               mat-raised-button
               class="mypage__edit-btn"
-              routerLink="/setting"
+              routerLink="/settings"
             >
               編集
             </button>
           </ng-container>
         </div>
         <div class="mypage__user-data">
-          <p class="mypage__data-item">167cm |</p>
+          <p class="mypage__data-item">{{ user.height }}cm |</p>
           <p class="mypage__data-item">85kg |</p>
-          <p class="mypage__data-item">man |</p>
+          <p class="mypage__data-item">{{ user.gender }} |</p>
         </div>
         <p class="mypage__user.introduction">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
-          suscipit perferendis voluptatem, harum quis explicabo, rerum officiis
-          dignissimos repudiandae ducimus vitae odio, eum atque quam nihil nobis
-          itaque inventore veritatis!
+          {{ user.introduction }}
         </p>
       </div>
     </div>

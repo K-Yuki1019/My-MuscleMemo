@@ -1,0 +1,77 @@
+.settings {
+  max-width: 600px;
+  margin: 0 auto 16px;
+  padding-top: 16px;
+  &__title {
+    font-size: 24px;
+    font-weight: 700;
+    padding: 16px 0;
+  }
+  &__heading {
+    font-size: 20px;
+    font-weight: bold;
+    color: #93a5b1;
+  }
+  &__avatar-items {
+    margin-bottom: 32px;
+  }
+  &__avatar-img {
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  &__icons {
+    position: absolute;
+    bottom: 1px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(45, 45, 45, 0.5);
+    border-radius: 50%;
+  }
+  &__icon-btn {
+    color: #fff;
+  }
+  &__input {
+    display: none;
+  }
+  &__flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__user-name {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  &__gender {
+    margin-bottom: 24px;
+  }
+  &__gender-title {
+    font-size: 14px;
+    color: #8b8d8f;
+    margin-bottom: 4px;
+  }
+  &__introduction {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  &__btn {
+    display: block;
+    margin: 12px 0 12px auto;
+  }
+}
+
+.mat-radio-button {
+  margin-right: 16px;
+}

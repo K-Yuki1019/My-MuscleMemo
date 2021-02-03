@@ -1,0 +1,101 @@
+<div class="wrapper">
+  <div class="settings">
+    <h1 class="settings__title">アカウント設定</h1>
+    <ng-container *ngIf="user$ | async as user">
+      <div class="settings__heading">プロフィール</div>
+      <div class="setting__avatar-items">
+        <label
+          for="avatar-file"
+          [style.background-image]="'url(' + user.avatarUrl + ')'"
+          class="settings__avatar-img"
+        >
+          <div class="settings__icons">
+            <mat-icon class="settings__icon-btn">add_a_photo</mat-icon>
+          </div>
+        </label>
+        <input
+          id="avatar-file"
+          type="file"
+          accept="iimage/png, image/jpeg"
+          class="settings__input"
+          #imageSelecter
+        />
+      </div>
+      <form class="settings__forms" [formGroup]="form">
+        <mat-form-field appearance="outline" class="settings__user-name">
+          <mat-label>ユーザー名</mat-label>
+          <input
+            type="text"
+            matInput
+            required
+            formControlName="userName"
+            #userNameInput
+            autocomplete="on"
+            placeholder="山田　太郎"
+          />
+          <mat-error *ngIf="userName.invalid && userName.touched"
+            >必須入力です</mat-error
+          >
+          <mat-error *ngIf="userName.hasError('maxlength')"
+            >{{ userNameMaxLength }}文字以内です</mat-error
+          >
+          <mat-hint align="end"
+            >{{ userNameInput.value?.length || 0 }} /
+            {{ userNameMaxLength }}文字</mat-hint
+          >
+        </mat-form-field>
+        <div class="settings__flex">
+          <div class="settings__gender">
+            <p class="settings__gender-title">性別</p>
+            <mat-radio-group
+              formControlName="gender"
+              class="settings__gender"
+              aria-label="性別"
+            >
+              <mat-radio-button
+                *ngFor="let gender of genders"
+                [value]="gender.value"
+                >{{ gender.viewValue }}</mat-radio-button
+              >
+            </mat-radio-group>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>身長</mat-label>
+            <mat-select [formControl]="height">
+              <mat-option *ngFor="let height of heightList" [value]="height">{{
+                height
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline" class="settings__introduction">
+          <mat-label>自己紹介</mat-label>
+          <textarea
+            type="text"
+            matInput
+            formControlName="introduction"
+            #introductionInput
+            matTextareaAutosize
+            [matAutosizeMinRows]="2"
+          ></textarea>
+          <mat-error *ngIf="introduction.hasError('maxlength')"
+            >{{ introductionMaxLength }}文字以内です</mat-error
+          >
+          <mat-hint align="end">
+            {{ introductionInput.value?.length || 0 }} /
+            {{ introductionMaxLength }}文字
+          </mat-hint>
+        </mat-form-field>
+        <button
+          type="button"
+          [disabled]="form.invalid"
+          mat-flat-button
+          class="settings__btn"
+          (click)="updateProfile(user.uid)"
+        >
+          プロフィールを更新する
+        </button>
+      </form>
+    </ng-container>
+  </div>
+</div>

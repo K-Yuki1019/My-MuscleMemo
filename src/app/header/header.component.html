@@ -1,84 +1,64 @@
-<div class="header">
-  <div class="header__inner">
+<mat-toolbar class="header">
+  <mat-toolbar-row class="header__inner">
     <div class="header__main">
-      <p class="header__logo">
-        <a routerLink="/">MuscleMemo</a>
-      </p>
+      <a class="header__logo" routerLink="/">Mitete!!</a>
       <div class="header__search">
         <mat-icon class="search-icon">search</mat-icon>
         <p class="place-holder">MuscleMemoを検索</p>
       </div>
     </div>
     <div class="header__buttons">
-      <div class="header__actions">
+      <ng-template #notlogin>
+        <button
+          mat-button
+          routerLink="/"
+          class="actions__login"
+          (click)="login()"
+        >
+          <mat-icon>
+            <img src="/assets/icons/google-icon.svg" alt="" />
+          </mat-icon>
+          <span>ログイン</span>
+        </button>
+      </ng-template>
+      <ng-container *ngIf="user$ | async as user; else notlogin">
         <div class="actions">
-          <ng-template #notlogin>
-            <a
-              mat-button
-              routerLink="/"
-              class="actions__login"
-              (click)="login()"
-              >ログイン</a
-            >
-          </ng-template>
-
-          <ng-container *ngIf="user$ | async as user; else notlogin">
-            <button
-              class="actions__avatar"
-              mat-icon-button
-              [style.background-image]="'url(' + user.avatarUrl + ')'"
-              [matMenuTriggerFor]="mypageItem"
-            ></button>
-            <button
-              mat-icon-button
-              class="actions__item"
-              [matMenuTriggerFor]="menu"
-            >
-              <mat-icon>add</mat-icon>
+          <button
+            class="actions__avatar"
+            mat-icon-button
+            [style.background-image]="'url(' + user.avatarUrl + ')'"
+            [matMenuTriggerFor]="mypageItem"
+          ></button>
+          <button
+            mat-icon-button
+            class="actions__item"
+            [matMenuTriggerFor]="menu"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+          <mat-menu
+            #mypageItem="matMenu"
+            xPosition="before"
+            class="header__menu"
+          >
+            <button mat-menu-item>
+              <mat-icon>note_add</mat-icon>
+              <a routerLink="/mypage/{{ user.uid }}">マイページ</a>
             </button>
-            <button
-              mat-icon-button
-              class="actions__item"
-              [matMenuTriggerFor]="option"
-            >
-              <mat-icon>arrow_drop_down</mat-icon>
+            <button mat-menu-item>
+              <mat-icon>note_add</mat-icon>
+              <a (click)="logout()">ログアウト</a>
             </button>
+          </mat-menu>
 
-            <mat-menu
-              #mypageItem="matMenu"
-              xPosition="before"
-              class="header__menu"
-            >
-              <button mat-menu-item>
-                <mat-icon>note_add</mat-icon>
-                <a routerLink="/mypage/{{ user.uid }}">マイページ</a>
-              </button>
-              <button mat-menu-item>
-                <mat-icon>note_add</mat-icon>
-                <a (click)="logout()">ログアウト</a>
-              </button>
-            </mat-menu>
-
-            <mat-menu #menu="matMenu" xPosition="before" class="header__menu">
-              <button mat-menu-item>
-                <mat-icon>note_add</mat-icon>
-                <a routerLink="/editor">投稿する</a>
-              </button>
-            </mat-menu>
-
-            <mat-menu #option="matMenu" xPosition="before" class="header__menu">
-              <button mat-menu-item>
-                <mat-icon>note_add</mat-icon>
-                <span>マイメニュー</span>
-              </button>
-              <button mat-menu-item>
-                <mat-icon>note_add</mat-icon>
-                <span>設定とプライバシー</span>
-              </button>
-            </mat-menu>
-          </ng-container>
+          <mat-menu #menu="matMenu" xPosition="before" class="header__menu">
+            <button mat-menu-item>
+              <mat-icon>note_add</mat-icon>
+              <a routerLink="/editor">投稿する</a>
+            </button>
+          </mat-menu>
         </div>
-      </div>
+      </ng-container>
     </div>
-  </div>
-</div>
+  </mat-toolbar-row>
+</mat-toolbar>

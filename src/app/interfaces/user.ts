@@ -7,4 +7,6 @@ export interface User {
   gender: 'man' | 'woman' | 'other';
   introduction: string;
   createdAt: firestore.Timestamp;
+  links: string[];
+  height: number;
 }

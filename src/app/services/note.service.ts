@@ -12,22 +12,29 @@ import { User } from '../interfaces/user';
 export class NoteService {
   constructor(private db: AngularFirestore) {}
 
-  createNote(noteData: Omit<Note, 'noteId' | 'createdAt'>): Promise<void> {
+  createNote(
+    noteData: Omit<Note, 'noteId' | 'createdAt' | 'updateAt'>
+  ): Promise<void> {
     const id = this.db.createId();
     const note: Note = {
       noteId: id,
+      ...noteData,
       createdAt: firestore.Timestamp.now(),
-      text: noteData.text,
-      todayMenu: noteData.todayMenu,
-      weight: noteData.weight,
-      height: noteData.height,
-      bodyFatPer: noteData.bodyFatPer,
-      userId: noteData.userId,
-      trainingWeight: noteData.trainingWeight,
-      rep: noteData.rep,
-      movieUrl: noteData.movieUrl,
+      updateAt: firestore.Timestamp.now(),
     };
     return this.db.doc<Note>(`notes/${id}`).set(note);
+  }
+
+  updateNote(
+    noteId: string,
+    note: Omit<Note, 'noteId' | 'createdAt' | 'updateAt'>
+  ): Promise<void> {
+    const updatedNote = {
+      noteId,
+      ...note,
+      updateAt: firestore.Timestamp.now(),
+    };
+    return this.db.doc(`notes/${noteId}`).update(updatedNote);
   }
 
   getNote(noteId: string): Observable<Note> {

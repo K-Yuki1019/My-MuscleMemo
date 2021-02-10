@@ -208,7 +208,6 @@ export class EditorComponent implements OnInit {
   submit() {
     this.inProgress = true;
     const value = this.form.value;
-    console.log(value);
     const formData: Omit<Note, 'createdAt' | 'updateAt' | 'noteId'> = {
       userId: this.user.uid,
       isPublic: value.isPublic,
@@ -219,14 +218,11 @@ export class EditorComponent implements OnInit {
       bodyImageUrl: value.bodyImageUrl,
       text: value.text,
     };
-    console.log(value);
-    console.log(formData);
     this.isComplete = true;
 
     const messgae = value.isPublic
       ? '投稿が完了しました！'
       : '下書きを保存しました！';
-    console.log(formData);
     if (this.noteId) {
       this.noteService
         .updateNote(this.noteId, formData)

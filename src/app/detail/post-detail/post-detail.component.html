@@ -20,7 +20,7 @@
         <div class="about">
           <div class="about__inner">
             <div class="about__card-items">
-              <div class="about__title">{{ fakes.userName }}の今日の記録</div>
+              <h2 class="about__title">{{ fakes.userName }}の今日の記録</h2>
               <div class="about__value">
                 <div class="about__now-value">
                   <mat-icon inline>speed</mat-icon>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="about__lose-value">-1%</div>
               </div>
-              <div class="about__description">{{ fakes.text }}</div>
+              <p class="about__description">{{ fakes.text }}</p>
               <div class="about__time">
                 <mat-icon inline>access_time</mat-icon>
                 {{ fakes.createdAt }}
@@ -43,11 +43,10 @@
             </div>
 
             <div class="about__card-items">
-              <div class="about__title">今日使った動画</div>
+              <h2 class="about__title">今日使った動画</h2>
 
               <div class="about__movie-card">
                 <div class="about__movie-url">
-                  <!--*ngForつける -->
                   <img
                     src="https://placehold.jp/100x70.png"
                     alt=""
@@ -83,7 +82,7 @@
               </div>
             </div>
             <div class="about__card-items">
-              <div class="about__title">今日のメニュー</div>
+              <h2 class="about__title">今日のメニュー</h2>
               <div class="about__menu">
                 <div class="about__menu-detail">
                   <div class="about__menu-item">
@@ -116,9 +115,9 @@
       </div>
       <div class="detail__side-menu">
         <div class="comment">
-          <div class="comment__title">
+          <h2 class="comment__title">
             <p>〇〇さんへのコメント</p>
-          </div>
+          </h2>
           <div class="comment__content"></div>
           <form class="comment__form" [formGroup]="form">
             <div class="comment__head">
@@ -153,7 +152,7 @@
           </form>
         </div>
         <div class="recent-posts">
-          <p class="recent-posts__title">{{ fakes.userName }}の最近の投稿</p>
+          <h2 class="recent-posts__title">{{ fakes.userName }}の最近の投稿</h2>
           <div class="recent-posts__cards">
             <div class="recent-posts__card-inner">
               <div class="recent-posts__card">

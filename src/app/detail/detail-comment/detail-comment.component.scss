@@ -1,0 +1,86 @@
+@import 'mixins';
+
+.comment {
+  background-color: #fff;
+  box-shadow: 0px 1px 2px #c3bfbf;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 4px;
+  @include sp {
+    box-shadow: 0;
+    margin: 0;
+  }
+  &__inner {
+    margin: 0 24px;
+  }
+  &__head {
+    display: flex;
+    align-items: center;
+  }
+  &__action {
+    text-align: right;
+    margin-bottom: 16px;
+  }
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #9cc3e4;
+    border-left: 8px solid #9cc3e4;
+    padding: 8px;
+  }
+  &__avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 0 16px 16px 0;
+  }
+  &__contents {
+    text-align: center;
+    padding: 60px 0 50px 0;
+    font-weight: bold;
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 24px;
+  }
+  &__form {
+    align-items: baseline;
+  }
+  &__textarea {
+    width: 100%;
+  }
+}
+
+.comment-card {
+  display: flex;
+  margin-bottom: 16px;
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 16px;
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__info {
+    display: flex;
+    align-items: center;
+  }
+  &__user-name {
+    text-align: left;
+    margin-right: 8px;
+  }
+  &__date {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  &__main {
+    width: 100%;
+  }
+  &__comment {
+    padding: 8px 8px 8px 0;
+  }
+  &__createdAt {
+    text-align: right;
+  }
+}

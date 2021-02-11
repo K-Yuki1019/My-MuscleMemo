@@ -1,0 +1,75 @@
+<div class="comment">
+  <ng-container *ngIf="this.authService.user$ | async as user">
+    <div class="comment__title">
+      <p>〇〇さんへのコメント</p>
+    </div>
+    <form class="comment__form" [formGroup]="form">
+      <div class="comment__head">
+        <img class="comment__avatar" [src]="user.avatarUrl" alt="" />
+        <mat-form-field
+          floatLabel="always"
+          appearance="outline"
+          class="comment__textarea"
+        >
+          <mat-label>コメントを書く</mat-label>
+          <textarea
+            formControlName="comment"
+            placeholder="test"
+            autofocus
+            autocomplete="off"
+            matInput
+            matTextareaAutosize
+            #body
+          ></textarea>
+          <mat-error *ngIf="comment.hasError('maxLength')"
+            >100文字以内です</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="comment__action">
+        <button
+          class="comment__submit"
+          mat-flat-button
+          (click)="sendComment(user.uid)"
+          color="primary"
+          [disabled]="form.invalid || form.pristine"
+        >
+          コメントを送信
+        </button>
+      </div>
+    </form>
+    <div class="comment-card" *ngFor="let comment of allComments$ | async">
+      <img class="comment-card__avatar" [src]="comment.user.avatarUrl" alt="" />
+      <div class="comment-card__main">
+        <div class="comment-card__header">
+          <div class="comment-card__info">
+            <p class="comment-card__user-name">{{ comment.user.userName }}</p>
+            <p class="comment-card__date">
+              {{ comment.createdAt.toDate() | date: 'yyyy/MM/dd' }}
+            </p>
+          </div>
+          <div class="comment-card__btn">
+            <button mat-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button
+                mat-menu-item
+                (click)="
+                  commentService.deleteComment(
+                    comment.noteId,
+                    comment.commentId
+                  )
+                "
+                *ngIf="authService.uid === comment.userId"
+              >
+                コメントを削除
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+        <div class="comment-card__comment">{{ comment.comment }}</div>
+      </div>
+    </div>
+  </ng-container>
+</div>

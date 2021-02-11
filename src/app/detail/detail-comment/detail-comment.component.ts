@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -20,8 +20,12 @@ export class DetailCommentComponent implements OnInit {
   allComments$: Observable<CommentWithUser[]>;
 
   form = this.fb.group({
-    comment: [''],
+    comment: ['', [Validators.maxLength(100)]],
   });
+
+  get comment() {
+    return this.form.get('comment') as FormControl;
+  }
 
   constructor(
     private fb: FormBuilder,

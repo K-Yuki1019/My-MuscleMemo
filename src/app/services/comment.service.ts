@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../interfaces/user';
-import {
-  Comment,
-  CommentWithUser,
-  CommentwithUser,
-} from '../interfaces/comment';
+import { Comment, CommentWithUser } from '../interfaces/comment';
 import { firestore } from 'firebase';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -49,7 +45,7 @@ export class CommentService {
 
   getAllCommentsWithUsers(
     sortCommentOrderByDesc: Observable<Comment[]>
-  ): Observable<CommentwithUser[]> {
+  ): Observable<CommentWithUser[]> {
     let comments: Comment[];
     return sortCommentOrderByDesc.pipe(
       switchMap((commentArray: Comment[]) => {
@@ -76,7 +72,7 @@ export class CommentService {
       }),
       map((users: User[]) => {
         return comments.map((comment) => {
-          const results: CommentwithUser = {
+          const results: CommentWithUser = {
             ...comment,
             user: users.find((user) => user.uid === comment.userId),
           };

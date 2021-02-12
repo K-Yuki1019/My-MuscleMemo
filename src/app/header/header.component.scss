@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .header {
   background-color: #fff;
   box-shadow: 0 -3px 8px 0 rgba(0, 0, 0, 0.5);
@@ -23,7 +25,12 @@
     display: flex;
     border-radius: 30px;
     background-color: rgb(219, 226, 233);
-    padding: 8px 60px 8px 8px;
+    padding: 8px 40px 8px 8px;
+    align-items: center;
+    @include sp {
+      background-color: #fff;
+      padding: 0;
+    }
   }
   &__buttons {
     display: flex;
@@ -33,9 +40,15 @@
 .search-icon {
   margin-right: 4px;
   color: rgba(0, 0, 0, 0.5);
+  @include sp {
+    font-size: 32px;
+  }
 }
 .place-holder {
   color: rgba(0, 0, 0, 0.5);
+  @include sp {
+    display: none;
+  }
 }
 
 .actions {
@@ -54,4 +67,8 @@
       margin-right: 16px;
     }
   }
+}
+
+.mat-toolbar-row {
+  height: 64px;
 }

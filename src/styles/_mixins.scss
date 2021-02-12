@@ -1,17 +1,11 @@
-@mixin lg {
-  @media screen and (min-width: 1024px) {
+@mixin tab {
+  @media screen and (max-width: 770px) {
     @content;
   }
 }
 
-@mixin md {
-  @media screen and (min-width: 600px) {
-    @content;
-  }
-}
-
-@mixin sm {
-  @media screen and (max-width: 599px) {
+@mixin sp {
+  @media screen and (max-width: 480px) {
     @content;
   }
 }

@@ -2,17 +2,21 @@ import { firestore } from 'firebase';
 import { User } from './user';
 
 export interface Note {
+  userId: string;
   noteId: string;
   createdAt: firestore.Timestamp;
-  text: string;
-  todayMenu: string;
+  updateAt: firestore.Timestamp;
   weight: string;
   bodyFatPer: string;
-  height: string;
-  movieUrl: string;
-  trainingWeight: string;
-  rep: string;
-  userId: string;
+  trainings: Array<{
+    todayMenu: string[];
+    trainingWeight: string[];
+    rep: string[];
+  }>;
+  text: string;
+  movieUrl: string[];
+  isPublic: boolean;
+  bodyImageUrl: File;
 }
 
 export interface NoteWithUser extends Note {

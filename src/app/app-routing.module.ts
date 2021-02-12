@@ -14,6 +14,13 @@ const routes: Routes = [
       import('./welcome/welcome.module').then((m) => m.WelcomeModule),
   },
   {
+    path: 'editor',
+    loadChildren: () =>
+      import('./editor/editor.module').then((m) => m.EditorModule),
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+  },
+  {
     path: '',
     component: ShellComponent,
     children: [
@@ -28,13 +35,6 @@ const routes: Routes = [
         path: 'mypage/:id',
         loadChildren: () =>
           import('./mypage/mypage.module').then((m) => m.MypageModule),
-        canActivate: [AuthGuard],
-        canLoad: [AuthGuard],
-      },
-      {
-        path: 'editor',
-        loadChildren: () =>
-          import('./editor/editor.module').then((m) => m.EditorModule),
         canActivate: [AuthGuard],
         canLoad: [AuthGuard],
       },

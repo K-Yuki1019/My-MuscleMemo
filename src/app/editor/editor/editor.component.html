@@ -1,68 +1,160 @@
-<div class="container">
-  <div class="container container--large">
-    <ng-container *ngIf="user$ | async as user">
-      <div class="form">
-        <h2 class="form__title">投稿を作成</h2>
-        <form [formGroup]="form">
-          <div class="form__items">
-            <div class="form__about-body">
-              <div class="form__body-weight">
-                <h2 class="form__description">体重を入力</h2>
-                <mat-form-field appearance="outline">
+<mat-toolbar class="header">
+  <mat-toolbar-row class="header__container">
+    <button class="header__back" mat-icon-button (click)="cancel()">
+      <mat-icon>keyboard_backspace</mat-icon>
+    </button>
+    <h1 class="header__logo"><a routerLink="/">Mitete!!</a></h1>
+    <div class="header__actions" [formGroup]="form">
+      <span
+        class="option option--draft"
+        [class.option--active]="!isPublic.value"
+        >下書き</span
+      >
+      <mat-slide-toggle
+        class="option"
+        formControlName="isPublic"
+        color="accent"
+        [class.option--active]="isPublic.value"
+        >公開</mat-slide-toggle
+      >
+      <button
+        type="submit"
+        (click)="submit()"
+        class="header__save-btn"
+        mat-flat-button
+        [disabled]="form.invalid || form.pristine"
+      >
+        {{ isPublic.value ? '公開する' : '下書き保存' }}
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="form">
+  <div class="form__container">
+    <form [formGroup]="form">
+      <div class="form__body">
+        <h2 class="form__title">体型について入力して下さい</h2>
+        <div class="form__body-items">
+          <mat-form-field appearance="outline" class="form__weight">
+            <mat-label>体重</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="ex) 50"
+              required
+              autocomplete="off"
+              formControlName="bodyWeight"
+            />
+            <span matSuffix>kg</span>
+            <mat-error *ngIf="bodyWeight.hasError('required')"
+              >必須入力です</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form__bfp">
+            <mat-label>体脂肪率(必須ではありません)</mat-label>
+            <input
+              type="text"
+              matInput
+              placeholder="15"
+              autocomplete="off"
+              formControlName="bodyFatPer"
+            />
+            <span matSuffix>%</span>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="form__flex-items">
+        <div class="form__flex-left">
+          <h2 class="form__title">今日のトレーニングを記録しましょう</h2>
+          <div formArrayName="trainings" class="form__trainning">
+            <div *ngFor="let training of trainings.controls; let ti = index">
+              <div [formGroupName]="ti">
+                <mat-form-field appearance="outline" class="form__menu">
+                  <mat-label>メニューを選択</mat-label>
+                  <mat-select formControlName="todayMenu">
+                    <mat-optgroup
+                      *ngFor="let group of menuGroup"
+                      [label]="group.part"
+                      [disabled]="group.disabled"
+                    >
+                      <mat-option
+                        *ngFor="let menu of group.menu"
+                        [value]="menu.value"
+                        >{{ menu.value }}</mat-option
+                      >
+                    </mat-optgroup>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form__t-weight">
+                  <mat-label>重量</mat-label>
                   <input
                     type="text"
                     matInput
-                    placeholder="55.0"
+                    formControlName="trainingWeight"
                     autocomplete="off"
-                    required
-                    formControlName="bodyWeight"
+                    placeholder="自重 or 〇〇(kg)"
                   />
                   <span matSuffix>kg</span>
                 </mat-form-field>
-              </div>
-              <div class="form__body-fat-per">
-                <h2 class="form__description">体脂肪率を入力</h2>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="form__rep">
+                  <mat-label>回数</mat-label>
                   <input
                     type="text"
                     matInput
-                    placeholder="15.0"
-                    autocomplete="off"
-                    required
-                    formControlName="bodyFatPer"
-                  />
-                  <span matSuffix>%</span>
-                </mat-form-field>
-              </div>
-            </div>
-            <h2 class="form__description">動画のURLがあればこちら</h2>
-            <ng-container formArrayName="movieUrls">
-              <div
-                *ngFor="let movieUrl of movieUrls.controls; let i = index"
-                [formGroupName]="i"
-                class="urls-wrapper"
-              >
-                <mat-form-field appearance="outline" class="form__movie-urls">
-                  <input
-                    matInput
-                    #formUrl
-                    maxlength="400"
-                    placeholder="ex)google.com"
+                    formControlName="rep"
                     autocomplete="off"
                   />
-                  <mat-hint align="end"
-                    >{{ formUrl.value.length }} / 400</mat-hint
-                  >
+                  <span matSuffix>回</span>
                 </mat-form-field>
                 <button
                   type="button"
                   mat-icon-button
-                  (click)="removeMovieUrl(i)"
+                  (click)="removeTrainings(ti)"
                 >
                   <mat-icon>remove_circle</mat-icon>
                 </button>
               </div>
-            </ng-container>
+            </div>
+            <button
+              class="add-url"
+              type="button"
+              (click)="addTrainings()"
+              mat-icon-button
+            >
+              <mat-icon>add_circle</mat-icon>
+            </button>
+          </div>
+          <h2 class="form__title">動画のURLがあればボタンをクリック</h2>
+          <div formArrayName="movieUrls" class="form__url-wrap">
+            <div
+              *ngFor="let movieUrl of movieUrls.controls; let mi = index"
+              [formGroupName]="mi"
+              class="urls-wrapper"
+            >
+              <mat-form-field appearance="outline" class="form__movie-urls">
+                <input
+                  matInput
+                  #formUrl
+                  maxlength="400"
+                  placeholder="ex)google.com"
+                  autocomplete="off"
+                  formControlName="movieUrl"
+                />
+                <mat-hint align="end"
+                  >{{ formUrl.value?.length || 0 }} /
+                  {{ maxUrlLength }}</mat-hint
+                >
+              </mat-form-field>
+              <button
+                type="button"
+                mat-icon-button
+                (click)="removeMovieUrl(mi)"
+              >
+                <mat-icon>remove_circle</mat-icon>
+              </button>
+            </div>
+
             <button
               class="add-url"
               type="button"
@@ -71,32 +163,61 @@
             >
               <mat-icon>add_circle</mat-icon>
             </button>
-
-            <h2 class="form__description">トレーニング内容を追加</h2>
-            <button mat-raised-button color="primary">
-              <a routerLink="select-menu">追加</a>
-            </button>
-
-            <h2 class="form__description">今日の感想</h2>
-            <mat-form-field appearance="outline">
-              <textarea
-                matInput
-                #formText
-                maxlength="1000"
-                placeholder="最近腹筋割れてきた！"
-                autocomplete="off"
-                required
-                formControlName="text"
-              ></textarea>
-              <mat-hint align="end">{{ formText.length }} / 1000</mat-hint>
-            </mat-form-field>
           </div>
-        </form>
-
-        <div class="form__actions">
-          <button mat-raised-button>作成</button>
+        </div>
+        <h2 class="form__title">日々の体型の変化を記録しましょう！</h2>
+        <div class="form__image">
+          <div class="form__image-main">
+            <img
+              *ngIf="bodyImageUrl || note?.bodyImageUrl"
+              [src]="bodyImageUrl || note.bodyImageUrl"
+              class="form__image-body"
+            />
+            <p class="form__notice" *ngIf="!bodyImageUrl">
+              ※ 1280px x 720px以上
+            </p>
+            <input
+              type="file"
+              style="display: none"
+              #bodyImageInput
+              formControlName="bodyImageUrl"
+              (change)="setImage($event)"
+              accept="image/png, image/jpg"
+            />
+            <p
+              class="form__notice"
+              *ngIf="!bodyImageUrl && !note?.bodyImageUrl"
+            >
+              今日の画像を選択して下さい
+            </p>
+          </div>
+          <button
+            type="button"
+            mat-raised-button
+            (click)="bodyImageInput.click()"
+            class="form__img-select"
+          >
+            <mat-icon>add_a_photo</mat-icon>
+          </button>
         </div>
       </div>
-    </ng-container>
+      <h2 class="form__title">最後に今日の感想を言葉にしてみましょう！</h2>
+      <mat-form-field appearance="outline" class="form__text">
+        <textarea
+          matInput
+          #formText
+          placeholder="ex最近腹筋割れてきた！ *"
+          autocomplete="off"
+          required
+          formControlName="text"
+          matTextareaAutosize
+          [matAutosizeMinRows]="3"
+        ></textarea>
+        <mat-hint align="end"
+          >{{ formText.value?.length || 0 }} / {{ maxTextLength }}</mat-hint
+        >
+        <mat-error *ngIf="text.hasError('required')">必須入力です</mat-error>
+      </mat-form-field>
+    </form>
   </div>
 </div>

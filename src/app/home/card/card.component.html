@@ -50,14 +50,21 @@
             </div>
             <p class="data__title">今日の体脂肪率</p>
           </div>
-          <div class="data__items">
+          <div
+            class="data__item"
+            *ngFor="let training of note.trainings; let i = index"
+          >
             <div class="data__figure-menu">
-              <p class="data__todays">{{ note.todayMenu }}</p>
-              <span class="data__other" *ngIf="note.todayMenu.length > 1"
-                >その他{{ note.todayMenu.length - 1 }}件</span
+              <p class="data__todays">
+                {{ note.trainings[i].todayMenu.length }}
+              </p>
+              <div
+                class="data__other"
+                *ngIf="note.trainings[i].todayMenu.length > 1"
               >
+                その他{{ note.trainings[i].todayMenu.length - 1 }}件
+              </div>
             </div>
-            <p class="data__title">今日のメニュー</p>
           </div>
         </div>
         <div class="card__bottom">

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { NoteWithUser } from 'src/app/interfaces/note';
 import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { NoteService } from 'src/app/services/note.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./mypage.component.scss'],
 })
 export class MypageComponent implements OnInit {
-  activatedTab = 'profile';
+  activatedTab = 'note';
   userTabContents = [
     { path: 'note', label: '投稿一覧' },
     { path: 'body-history', label: '体型記録一覧' },
@@ -25,36 +23,28 @@ export class MypageComponent implements OnInit {
   user$: Observable<User>;
   userId: string;
 
-  noteWithUser$: Observable<NoteWithUser> = this.route.paramMap.pipe(
-    switchMap((param) => {
-      const id = param.get('noteId');
-      return this.noteService.getNoteWithUserByNoteId(id);
-    })
-  );
-
-  userId$: Observable<string> = this.authService.user$.pipe(
+  authUid$: Observable<string> = this.authService.user$.pipe(
     map((user) => {
       return user.uid;
     })
   );
 
-  profileId$: Observable<string> = this.route.paramMap.pipe(
+  mypageId$: Observable<string> = this.route.paramMap.pipe(
     map((param) => {
       return param.get('id');
     })
   );
 
   isMypage$: Observable<boolean> = combineLatest([
-    this.userId$,
-    this.profileId$,
-  ]).pipe(map(([userId, profileId]) => userId === profileId));
+    this.authUid$,
+    this.mypageId$,
+  ]).pipe(map(([userId, mypageId]) => userId === mypageId));
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
     public authService: AuthService,
-    private snackBar: MatSnackBar,
-    private noteService: NoteService
+    private snackBar: MatSnackBar
   ) {}
 
   updateAvatar(event) {

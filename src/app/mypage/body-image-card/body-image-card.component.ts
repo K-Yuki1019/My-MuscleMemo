@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/interfaces/user';
-import * as faker from 'faker/locale/ja';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { NoteWithUser } from 'src/app/interfaces/note';
+import { AuthService } from 'src/app/services/auth.service';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-body-image-card',
@@ -8,20 +12,14 @@ import * as faker from 'faker/locale/ja';
   styleUrls: ['./body-image-card.component.scss'],
 })
 export class BodyImageCardComponent implements OnInit {
-  users = new Array(100).fill(null).map(() => {
-    return {
-      uid: faker.random.uuid(),
-      userName: faker.name.findName(),
-      avatarUrl: faker.image.image(),
-      height: faker.random.objectElement([160, 170, 180, 199]),
-      weight: faker.random.objectElement([40, 50, 60, 72]),
-      gender: faker.name.gender(['man', 'woman', 'other']),
-      bodyImage: faker.image.imageUrl(),
-      likedCount: faker.random.number(50),
-    };
-  });
+  noteWithUser$: Observable<
+    NoteWithUser[]
+  > = this.noteService.getNotesWithImagesAndPublic(this.authService.uid);
 
-  constructor() {}
+  constructor(
+    private noteService: NoteService,
+    public authService: AuthService
+  ) {}
 
   ngOnInit(): void {}
 }

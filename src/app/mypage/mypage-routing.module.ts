@@ -11,6 +11,11 @@ const routes: Routes = [
     component: MypageComponent,
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'note',
+      },
+      {
         path: 'note',
         component: NoteComponent,
       },

@@ -1,23 +1,28 @@
+@import 'mixins';
+
 .image-card {
-  background-color: #eef0f7;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  // background-color: #eef0f7;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  // @include tab {
+  // }
   &__content {
-    width: 232px;
     list-style: none;
     border: 1px #ddd solid;
-    margin: 18px 0 0 18px;
-    background-color: #fff;
+    margin: 16px auto;
   }
-
+  &__main-image {
+    position: relative;
+  }
   &__date {
     color: #fff;
-    text-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 1.5px rgb(0 0 0 / 60%);
     text-align: left;
     align-items: center;
-    position: relative;
-    bottom: 30px;
-    left: 16px;
+    position: absolute;
+    left: 8px;
+    bottom: 10px;
   }
   &__avatar {
     border-radius: 50%;
@@ -31,9 +36,11 @@
     display: flex;
     align-items: center;
     border-bottom: 1px #ddd solid;
+    background-color: white;
   }
   &__user-data {
     text-align: left;
+    background-color: #fff;
   }
   &__data {
     font-size: 14px;
@@ -45,6 +52,7 @@
   }
   &__active {
     padding: 8px;
+    background-color: #fff;
   }
   &__icon {
     margin-right: 8px;
@@ -53,4 +61,9 @@
 
 .time {
   margin-right: 8px;
+}
+
+.not-exist {
+  padding: 16px 0;
+  margin: 0 auto;
 }

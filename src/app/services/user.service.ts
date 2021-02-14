@@ -18,7 +18,7 @@ export class UserService {
   }
 
   async updateAvatar(userId: string, file: File) {
-    const result = await this.storage.ref(`users/${userId}`).put(file);
+    const result = await this.storage.ref(`images/${userId}`).put(file);
     const avatarURL = await result.ref.getDownloadURL();
 
     this.db.doc(`users/${userId}`).update({

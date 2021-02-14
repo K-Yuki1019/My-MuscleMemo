@@ -1,102 +1,37 @@
-<ul class="image-card" *ngFor="let user of users">
-  <li class="image-card__content">
-    <div class="image-card__header">
-      <img
-        class="image-card__image"
-        src="http://placehold.jp/232x310.png"
-        alt="体型の写真"
-      />
-      <div class="image-card__date">
-        <mat-icon class="time" inline>access_time</mat-icon>2020.11.26
-      </div>
-    </div>
-    <div class="image-card__info">
-      <button
-        class="image-card__avatar"
-        [style.background-image]="'url(' + user.avatarUrl + ')'"
-      ></button>
-      <div class="image-card__user-data">
-        <div class="image-card__name">
-          <p>{{ user.userName }}</p>
-        </div>
-        <div class="image-card__body-info">
-          <div class="image-card__data">
-            {{ user.height }}cm /{{ user.weight }}kg /{{ user.gender }} /
-          </div>
+<ul class="image-card">
+  <ng-container *ngIf="noteWithUser$ | async as notes; else notExist">
+    <li class="image-card__content" *ngFor="let note of notes">
+      <div class="image-card__main-image">
+        <img src="http://placehold.jp/200x300.png" alt="体型の写真" />
+        <div class="image-card__date">
+          <mat-icon class="time" inline>access_time</mat-icon>2020.11.26
         </div>
       </div>
-    </div>
-    <div class="image-card__active">
-      <button class="image-card__liked" mat-button>
-        <mat-icon class="image-card__icon" fontSet="material-icons-outlined"
-          >favorite__outline</mat-icon
-        >
-        <span>{{ user.likedCount }}</span>
-      </button>
-    </div>
-  </li>
-  <li class="image-card__content">
-    <div class="image-card__header">
-      <img src="http://placehold.jp/232x310.png" alt="体型の写真" />
-      <div class="image-card__date">
-        <mat-icon inline class="time">access_time</mat-icon>2020.11.26
-      </div>
-    </div>
-    <div class="image-card__info">
-      <button
-        class="image-card__avatar"
-        [style.background-image]="'url(' + user.avatarUrl + ')'"
-      ></button>
-      <div class="image-card__user-data">
-        <div class="image-card__name">
-          <p>{{ user.userName }}</p>
-        </div>
-        <div class="image-card__body-info">
-          <div class="image-card__data">
-            {{ user.height }}cm /{{ user.weight }}kg /{{ user.gender }} /
-          </div>
+      <div class="image-card__info">
+        <button
+          class="image-card__avatar"
+          [style.background-image]="'url(' + note.user.avatarUrl + ')'"
+        ></button>
+        <div class="image-card__user-data">
+          <p class="image-card__name">{{ note.user.userName }}</p>
+          <p class="image-card__data">
+            {{ note.user.height }}cm /{{ note.weight }}kg /
+          </p>
         </div>
       </div>
-    </div>
-    <div class="image-card__active">
-      <button class="image-card__liked" mat-button>
-        <mat-icon class="image-card__icon" fontSet="material-icons-outlined"
-          >favorite__outline</mat-icon
-        >
-        <span>{{ user.likedCount }}</span>
-      </button>
-    </div>
-  </li>
-  <li class="image-card__content">
-    <div class="image-card__header">
-      <img src="http://placehold.jp/232x310.png" alt="体型の写真" />
-      <div class="image-card__date">
-        <mat-icon class="time" inline>access_time</mat-icon>2020.11.26
-      </div>
-    </div>
-    <div class="image-card__info">
-      <button
-        class="image-card__avatar"
-        [style.background-image]="'url(' + user.avatarUrl + ')'"
-      ></button>
-      <div class="image-card__user-data">
-        <div class="image-card__name">
-          <p>{{ user.userName }}</p>
-        </div>
-        <div class="image-card__body-info">
-          <div class="image-card__data">
-            {{ user.height }}cm /{{ user.weight }}kg /{{ user.gender }} /
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="image-card__active">
-      <button class="image-card__liked" mat-button>
-        <mat-icon class="image-card__icon" fontSet="material-icons-outlined"
-          >favorite__outline</mat-icon
-        >
-        <span>{{ user.likedCount }}</span>
-      </button>
-    </div>
-  </li>
+      <!-- <div class="image-card__active">
+        <button class="image-card__liked" mat-button>
+          <mat-icon class="image-card__icon" fontSet="material-icons-outlined"
+            >favorite__outline</mat-icon
+          >
+          <span>{{ user.likedCount }}</span>
+        </button>
+      </div> -->
+    </li>
+  </ng-container>
 </ul>
+<ng-template #notExist>
+  <div class="not-exist">
+    <p>まだ投稿がありません</p>
+  </div>
+</ng-template>

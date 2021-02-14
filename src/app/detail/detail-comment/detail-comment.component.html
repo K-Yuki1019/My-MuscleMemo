@@ -1,8 +1,6 @@
 <div class="comment">
   <ng-container *ngIf="this.authService.user$ | async as user">
-    <div class="comment__title">
-      <p>〇〇さんへのコメント</p>
-    </div>
+    <h2 class="comment__title">〇〇さんへのコメント</h2>
     <form class="comment__form" [formGroup]="form">
       <div class="comment__head">
         <img class="comment__avatar" [src]="user.avatarUrl" alt="" />

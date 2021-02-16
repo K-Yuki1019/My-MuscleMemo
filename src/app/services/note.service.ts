@@ -67,62 +67,86 @@ export class NoteService {
     );
   }
 
-  getNoteWithUserByNoteId(noteId: string): Observable<NoteWithUser> {
-    return this.db
-      .doc(`notes/${noteId}`)
-      .valueChanges()
-      .pipe(
-        switchMap((note: Note) => {
-          const user$: Observable<User> = this.db
-            .doc<User>(`users/${note.userId}`)
-            .valueChanges();
-          return combineLatest([user$, of(note)]);
-        }),
-        map(([user, note]) => {
-          return {
+  // getNoteWithUserByNoteId(noteId: string): Observable<NoteWithUser> {
+  //   return this.db
+  //     .doc(`notes/${noteId}`)
+  //     .valueChanges()
+  //     .pipe(
+  //       switchMap((note: Note) => {
+  //         const user$: Observable<User> = this.db
+  //           .doc<User>(`users/${note.userId}`)
+  //           .valueChanges();
+  //         return combineLatest([user$, of(note)]);
+  //       }),
+  //       map(([user, note]) => {
+  //         return {
+  //           ...note,
+  //           user,
+  //         };
+  //       })
+  //     );
+
+  // getNotesWithImagesAndPublic(userId: string) {
+  //   const listRef$ = this.storage.ref(`users/${userId}`).listAll(); //userIdに基づく画像ファイルを出す
+  //   const sorted: Observable<Note[]> = this.db
+  //     .collection<Note>('notes', (ref) => {
+  //       return ref
+  //         .where('userId', '==', userId)
+  //         .where('isPublic', '==', 'true')
+  //         .orderBy('createdAt', 'desc')
+  //         .limit(100);
+  //     })
+  //     .valueChanges();
+
+  //   if (listRef$.item.length > 0) {
+  //     return this.getNotesWithUsers(sorted);
+  //   }
+  // }
+
+  // getAllNotesWithUsers(): Observable<NoteWithUser[]> {
+  //   const sorted: Observable<NoteWithUser[]> = this.db
+  //     .collection<Note>(`notes`, (ref) => {
+  //       return ref.where('isPublic', '==', 'true').orderBy('createdAt', 'desc');
+  //     })
+  //     .valueChanges();
+  //   return this.getNotesWithUsers(sorted);
+  // }
+
+  getNotesWithUsers(
+    sorted: Observable<NoteWithUser[]>
+  ): Observable<NoteWithUser[]> {
+    let notes: NoteWithUser[];
+    return sorted.pipe(
+      switchMap((docs: NoteWithUser[]) => {
+        notes = docs;
+
+        if (notes.length) {
+          const uniqueUids: string[] = notes
+            .filter((note, index, array) => {
+              return (
+                array.findIndex((value) => value.userId === note.userId) ===
+                index
+              );
+            })
+            .map((note) => note.userId);
+          return combineLatest(
+            uniqueUids.map((id) => {
+              return this.db.doc<User>(`users/${id}`).valueChanges();
+            })
+          );
+        } else {
+          return of([]);
+        }
+      }),
+      map((users: User[]) => {
+        return notes.map((note) => {
+          const result: NoteWithUser = {
             ...note,
-            user,
+            user: users.find((user) => user.uid === note.userId),
           };
-        })
-      );
-  }
-
-  getNotesWithUsers(): Observable<NoteWithUser[]> {
-    let notes: Note[];
-    return this.db
-      .collection<Note>('notes')
-      .valueChanges()
-      .pipe(
-        switchMap((docs: Note[]) => {
-          notes = docs;
-
-          if (notes.length) {
-            const uniqueUids: string[] = notes
-              .filter((note, index, array) => {
-                return (
-                  array.findIndex((value) => value.userId === note.userId) ===
-                  index
-                );
-              })
-              .map((note) => note.userId);
-            return combineLatest(
-              uniqueUids.map((id) => {
-                return this.db.doc<User>(`users/${id}`).valueChanges();
-              })
-            );
-          } else {
-            return of([]);
-          }
-        }),
-        map((users: User[]) => {
-          return notes.map((note) => {
-            const result: NoteWithUser = {
-              ...note,
-              user: users.find((user) => user.uid === note.userId),
-            };
-            return result;
-          });
-        })
-      );
+          return result;
+        });
+      })
+    );
   }
 }

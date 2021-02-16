@@ -75,18 +75,18 @@
     margin-bottom: 16px;
   }
   &__menu {
-    @include md {
+    @include tab {
       width: 100%;
     }
   }
   &__t-weight {
     margin-right: 16px;
-    @include md {
+    @include tab {
       width: 100%;
     }
   }
   &__rep {
-    @include md {
+    @include tab {
       width: 100%;
     }
   }
@@ -98,7 +98,7 @@
     justify-content: space-between;
     margin-bottom: 24px;
 
-    @include md {
+    @include tab {
       display: grid;
       grid-template-columns: 1fr;
     }

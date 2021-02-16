@@ -15,9 +15,7 @@
           class="actions__login"
           (click)="login()"
         >
-          <mat-icon>
-            <img src="/assets/icons/google-icon.svg" alt="" />
-          </mat-icon>
+          <mat-icon>login</mat-icon>
           <span>ログイン</span>
         </button>
       </ng-template>
@@ -54,7 +52,7 @@
           <mat-menu #menu="matMenu" xPosition="before" class="header__menu">
             <button mat-menu-item>
               <mat-icon>note_add</mat-icon>
-              <a routerLink="/editor">投稿する</a>
+              <a routerLink="/editor/create">投稿する</a>
             </button>
           </mat-menu>
         </div>

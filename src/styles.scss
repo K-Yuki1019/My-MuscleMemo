@@ -15,11 +15,10 @@ body {
 }
 
 .container {
-  width: 100%;
-  margin: 0 auto;
-  background-color: #f0f2f5;
-  overflow: hidden;
-  padding-top: 64px;
+  max-width: 1048px; // 最大幅
+  padding: 0 24px; // 画面端との余白
+  margin: 0 auto; // コンテナーを画面中央に配置
+  box-sizing: border-box; // 幅に余白を含める
   &--card {
     max-width: 600px;
     padding: 0 24px;

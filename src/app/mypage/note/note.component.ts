@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { Note } from 'src/app/interfaces/note';
+import { Note, NoteWithUser } from 'src/app/interfaces/note';
 import { AuthService } from 'src/app/services/auth.service';
 import { NoteService } from 'src/app/services/note.service';
 import { User } from '../../interfaces/user';
@@ -12,7 +11,7 @@ import { User } from '../../interfaces/user';
 })
 export class NoteComponent implements OnInit {
   user$: Observable<User> = this.authService.user$;
-  notes$: Observable<Note[]> = this.noteService.getNotesWithUsers();
+  // notes$: Observable<NoteWithUser[]> = this.noteService.getAllNotesWithUsers();
 
   notes: Note[] = [];
   isLoding: boolean;
@@ -23,5 +22,7 @@ export class NoteComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // console.log(this.notes$);
+  }
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NoteWithUser } from 'src/app/interfaces/note';
+import { Component, OnInit } from '@angular/core';
+import * as faker from 'faker/locale/ja';
 
 @Component({
   selector: 'app-card',
@@ -7,7 +7,18 @@ import { NoteWithUser } from 'src/app/interfaces/note';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
-  @Input() note: NoteWithUser;
+  fakeNoteWithUser$ = new Array(100).fill(null).map(() => {
+    return {
+      createdAt: faker.date.month(),
+      weight: faker.random.number({ min: 40, max: 100 }),
+      bodyFatPer: faker.random.number({ min: 4, max: 30 }),
+      todayMenu: faker.lorem.word(2),
+      userName: faker.name.findName(),
+      avatarUrl: faker.image.image(),
+      likedCount: faker.random.number(50),
+    };
+  });
+
   constructor() {}
 
   ngOnInit(): void {}

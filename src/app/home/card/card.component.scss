@@ -1,32 +1,40 @@
+@import 'mixins';
+@import 'variables';
+
 .card-container {
-  max-width: 600px;
-  padding: 0 24px;
+  max-width: 550px;
+  padding: 80px 0;
   margin: 0 auto;
 }
-
 .card {
   cursor: pointer;
   background: linear-gradient(to top, #eef0f7 0%, #f9f8f8 100%);
   border-radius: 8px;
   box-shadow: 0px 1px 2px #c3bfbf;
   background-color: white;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   position: relative;
   overflow: hidden;
   &__inner {
-    padding: 24px 32px;
+    padding: 8px 24px 24px;
+    @include sp {
+      padding: 8px 15px 18px;
+    }
   }
   &__header {
     display: flex;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
   &__avatar {
     margin-right: 16px;
   }
+  &__header-top {
+    width: 100%;
+  }
   &__user-name {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
   }
   &__data {
     display: flex;
@@ -41,21 +49,17 @@
   &__date {
     color: rgba(0, 0, 0, 0.5);
   }
-  &__body-img {
-    margin-bottom: 16px;
-  }
-  &__img {
-    position: absolute;
-    bottom: -15px;
-    right: -12px;
-    width: 100px;
-  }
 }
 
 .data {
-  display: flex;
-  align-items: flex-end;
-  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 4px;
+  align-items: center;
+  padding-right: 48px;
+  @include sp {
+    padding-right: 0;
+  }
   &__items {
     margin-right: 20px;
   }
@@ -71,22 +75,37 @@
   &__other {
     color: rgba(0, 0, 0, 0.6);
     font-size: 10px;
+    grid-row: 2/3;
+    grid-column: 3/4;
   }
   &__end {
     color: rgba(0, 0, 0, 0.6);
   }
   &__todays {
     font-size: 24px;
-    font-weight: 400;
+    font-weight: 500;
     margin-right: 8px;
     overflow-wrap: break-word;
+    @include sp {
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+  &__todays-k {
+    font-family: 'Kosugi', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    @include sp {
+      font-size: 16px;
+    }
   }
   &__title {
-    font-size: 16px;
+    font-family: $font-title;
+    font-size: 12px;
     color: #9c9c9c;
-  }
-  &__text {
-    width: 100px;
-    overflow-wrap: break-word;
+    @include sp {
+      font-size: 8px;
+    }
   }
 }

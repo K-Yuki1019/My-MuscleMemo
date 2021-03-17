@@ -13,7 +13,7 @@ import { Comment, CommentWithUser } from '../../interfaces/comment';
   styleUrls: ['./detail-comment.component.scss'],
 })
 export class DetailCommentComponent implements OnInit {
-  @Input() noteId: string;
+  noteId: string;
   userId: string = this.authService.uid;
   processing: boolean;
   user$: Observable<User>;
@@ -30,8 +30,7 @@ export class DetailCommentComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     public commentService: CommentService,
-    public authService: AuthService,
-    private db: AngularFirestore
+    public authService: AuthService
   ) {}
 
   sendComment(userId: string) {

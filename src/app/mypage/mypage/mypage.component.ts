@@ -25,12 +25,12 @@ export class MypageComponent implements OnInit {
   user$: Observable<User>;
   userId: string;
 
-  noteWithUser$: Observable<NoteWithUser> = this.route.paramMap.pipe(
-    switchMap((param) => {
-      const id = param.get('noteId');
-      return this.noteService.getNoteWithUserByNoteId(id);
-    })
-  );
+  // noteWithUser$: Observable<NoteWithUser> = this.route.paramMap.pipe(
+  //   switchMap((param) => {
+  //     const id = param.get('noteId');
+  //     return this.noteService.getNoteWithUserByNoteId(id);
+  //   })
+  // );
 
   userId$: Observable<string> = this.authService.user$.pipe(
     map((user) => {

@@ -27,6 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { SearchFormComponent } from './search-form/search-form.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ShellComponent,
     HeaderComponent,
     FooterComponent,
+    SearchFormComponent,
   ],
   imports: [
     CommonModule,

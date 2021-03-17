@@ -1,0 +1,13 @@
+<form [formGroup]="form" class="search">
+  <input
+    type="text"
+    placeholder="キーワードで検索"
+    autocomplete="off"
+    matInput
+    formControlName="search"
+    class="search__input"
+  />
+  <button mat-icon-button class="search__icon">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>

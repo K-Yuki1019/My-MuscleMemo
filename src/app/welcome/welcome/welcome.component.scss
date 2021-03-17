@@ -1,8 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+@import 'variables';
+@import 'mixins';
+
+.container-welcome {
+  max-width: 1024px;
+  height: 200%;
+}
+
+.welcome {
+  width: 100vw;
+  &__inner {
+    padding: 0 56px;
+    @include sp {
+      padding: 0 16px;
+    }
+  }
+}
+
 .header {
   border-bottom: solid 1px #ddd;
   &__inner {
     margin: 0 auto;
-    padding: 16px 0 12px
+    padding: 16px 0 12px;
   }
   &__logo {
     margin: 0;
@@ -12,3 +31,25 @@
   }
 }
 
+.login {
+  text-align: center;
+  &__text {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    padding-bottom: 24px;
+    margin-bottom: 48px;
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background-color: $main-color;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -25px;
+    }
+  }
+}

@@ -114,43 +114,7 @@
         </div>
       </div>
       <div class="detail__side-menu">
-        <div class="comment">
-          <h2 class="comment__title">
-            <p>〇〇さんへのコメント</p>
-          </h2>
-          <div class="comment__content"></div>
-          <form class="comment__form" [formGroup]="form">
-            <div class="comment__head">
-              <img class="comment__avatar" [src]="fakes.avatarUrl" alt="" />
-              <mat-form-field
-                floatLabel="always"
-                appearance="outline"
-                class="comment__textarea"
-              >
-                <mat-label>コメントを書く</mat-label>
-                <textarea
-                  formControlName="comment"
-                  placeholder="test"
-                  autofocus
-                  autocomplete="off"
-                  matInput
-                  matTextareaAutosize
-                  #body
-                ></textarea>
-              </mat-form-field>
-            </div>
-            <div class="comment__action">
-              <button
-                class="comment__submit"
-                mat-flat-button
-                color="primary"
-                [disabled]="form.invalid || form.pristine"
-              >
-                コメントを送信
-              </button>
-            </div>
-          </form>
-        </div>
+        <app-detail-comment></app-detail-comment>
         <div class="recent-posts">
           <h2 class="recent-posts__title">{{ fakes.userName }}の最近の投稿</h2>
           <div class="recent-posts__cards">

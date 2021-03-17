@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+@import 'variables';
+@import 'mixins';
+.catch {
+  text-align: center;
+  margin-bottom: 64px;
+  &__main {
+    max-width: 500px;
+    margin: 0 auto 48px;
+  }
+  &__title {
+    font-family: 'Noto Sans JP', sans-serif;
+    padding-bottom: 24px;
+    margin-bottom: 48px;
+    font-size: 28px;
+    position: relative;
+    &::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 2px;
+      background-color: $main-color;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -25px;
+    }
+  }
+  &__text {
+    font-size: 14px;
+    color: $sub-text;
+    line-height: 1.5;
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-around;
+  @include sp {
+    flex-direction: column;
+  }
+  &__before {
+    width: 50%;
+    background-color: #e0e0e0;
+    position: relative;
+    padding: 48px 24px 8px;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 100%;
+      border: none;
+      border-top: 19vh solid #eef0f7;
+      border-left: 46px solid #e0e0e0;
+      border-bottom: 19vh solid #eef0f7;
+      z-index: 1;
+      @include mid {
+        display: none;
+      }
+    }
+    @include mid {
+      width: 100%;
+      padding: 48px 0 0;
+      margin-bottom: 48px;
+    }
+    @include sp {
+      border-radius: 16px;
+    }
+  }
+  &__after {
+    width: 50%;
+    background-color: $sub-color;
+    padding: 48px 24px 8px;
+    position: relative;
+    @include mid {
+      width: 100%;
+      padding: 48px 0 0;
+    }
+    @include sp {
+      border-radius: 16px;
+    }
+  }
+  &__title {
+    margin-bottom: 16px;
+    position: absolute;
+    top: -12px;
+    left: 40%;
+    &--color {
+      color: $main-color;
+    }
+  }
+  &__text {
+    margin-bottom: 24px;
+    color: $sub-text;
+  }
+  &__img {
+    width: 240px;
+    @include sp {
+      width: 200px;
+    }
+  }
+}

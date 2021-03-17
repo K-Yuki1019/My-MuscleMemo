@@ -9,7 +9,6 @@
   &__main {
     display: flex;
     align-items: center;
-    padding-left: 16px;
   }
   &__logo {
     margin-right: 16px;
@@ -19,22 +18,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
-  }
-  &__search {
-    display: flex;
-    border-radius: 30px;
-    background-color: rgb(219, 226, 233);
-    padding: 8px 40px 8px 8px;
-    align-items: center;
-    @include sp {
-      background-color: #fff;
-      padding: 0;
-    }
+    padding: 0 24px;
   }
   &__buttons {
     display: flex;
     align-items: center;
+  }
+  &__search {
+    flex: 1;
   }
 }
 .search-icon {
@@ -63,9 +54,6 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    &:nth-of-type(even) {
-      margin-right: 16px;
-    }
   }
 }
 

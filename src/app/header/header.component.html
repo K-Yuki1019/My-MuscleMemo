@@ -2,10 +2,9 @@
   <mat-toolbar-row class="header__inner">
     <div class="header__main">
       <a class="header__logo" routerLink="/">Mitete!!</a>
-      <div class="header__search">
-        <mat-icon class="search-icon">search</mat-icon>
-        <p class="place-holder">MuscleMemoを検索</p>
-      </div>
+    </div>
+    <div class="header__search">
+      <app-search-form></app-search-form>
     </div>
     <div class="header__buttons">
       <ng-template #notlogin>
@@ -15,8 +14,8 @@
           class="actions__login"
           (click)="login()"
         >
-          <mat-icon>login</mat-icon>
           <span>ログイン</span>
+          <mat-icon class="icon">login</mat-icon>
         </button>
       </ng-template>
       <ng-container *ngIf="user$ | async as user; else notlogin">

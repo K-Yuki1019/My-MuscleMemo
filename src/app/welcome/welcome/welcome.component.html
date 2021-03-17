@@ -1,11 +1,19 @@
-<div class="header">
-  <div class="header__inner">
-    <h1 class="header__logo">
-      <a href="/">ロゴ</a>
-    </h1>
+<div class="container-welcome">
+  <div class="welcome">
+    <app-hero></app-hero>
+    <div class="welcome__inner">
+      <app-catch></app-catch>
+      <app-how-to-create></app-how-to-create>
+    </div>
+    <div class="login">
+      <p class="login__text">Miteteを使って毎日の筋トレを記録しよう！</p>
+      <button mat-raised-button class="login__btn" (click)="login()">
+        Miteteを始める
+      </button>
+    </div>
   </div>
 </div>
-<div class="container">
+<!-- <div class="container">
   <div class="welcome">
     <div class="welcome__top">
       <div class="top">
@@ -22,4 +30,4 @@
       <button (click)="login()" mat-raised-button color="primary">記録を始める</button>
     </div>
   </div>
-</div>
+</div> -->

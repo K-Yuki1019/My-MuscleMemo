@@ -49,7 +49,7 @@
 }
 
 .form {
-  max-width: 700px;
+  max-width: 720px;
   align-items: center;
   margin: auto;
   padding: 88px 16px 24px;
@@ -104,7 +104,10 @@
     }
   }
   &__menu {
-    margin-right: 16px;
+    margin-right: 8px;
+    &:nth-child(3) {
+      margin-right: 16px;
+    }
   }
 
   &__url-wrap {

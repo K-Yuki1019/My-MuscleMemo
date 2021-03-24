@@ -19,6 +19,7 @@ export class CardComponent implements OnInit, AfterViewInit {
       avatarUrl: faker.image.image(),
       likedCount: faker.random.number(50),
       bodyImageUrl: faker.random.image(),
+      text: faker.lorem.words(30),
     };
   });
 

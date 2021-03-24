@@ -56,18 +56,20 @@
         </div>
       </div>
       <div class="info">
-        <div class="info__items">
-          <button
-            class="info__avatar"
-            mat-icon-button
-            [style.background-image]="'url(' + note.avatarUrl + ')'"
-          ></button>
-          <div class="info__data">
-            <div class="info__user-name">{{ note.userName }}</div>
-            <div class="info__created-at">{{ note.createdAt }}</div>
+        <a routerLink="/detail/OOB0BOYUyu7V2fdIf9ID">
+          <div class="info__items">
+            <button
+              class="info__avatar"
+              mat-icon-button
+              [style.background-image]="'url(' + note.avatarUrl + ')'"
+            ></button>
+            <div class="info__data">
+              <div class="info__user-name">{{ note.userName }}</div>
+              <div class="info__created-at">{{ note.createdAt }}</div>
+            </div>
           </div>
-        </div>
-        <p class="info__text">{{ note.text }}</p>
+          <p class="info__text">{{ note.text }}</p>
+        </a>
       </div>
     </div>
   </div>

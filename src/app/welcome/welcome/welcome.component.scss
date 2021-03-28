@@ -2,9 +2,14 @@
 @import 'variables';
 @import 'mixins';
 
+:host {
+  padding-bottom: 40px;
+  display: block;
+}
+
 .container-welcome {
   max-width: 1024px;
-  height: 200%;
+  height: 180vh;
 }
 
 .welcome {

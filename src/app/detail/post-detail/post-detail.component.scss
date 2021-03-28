@@ -20,18 +20,15 @@
     width: 560px;
     height: 740px;
     border-radius: 6px 6px 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     @include tab {
       width: 100%;
       height: 600px;
       border-radius: 0;
     }
   }
-  // &__left {
-  //   width: 500px;
-  // }
-  // &__side-menu {
-  //   padding: 16px;
-  // }
   &__about {
     margin-left: 16px;
     @include tab {
@@ -59,51 +56,6 @@
         margin-right: 0;
       }
     }
-  }
-}
-
-.comment {
-  background-color: #fff;
-  box-shadow: 0px 1px 2px #c3bfbf;
-  margin-bottom: 24px;
-  padding: 16px;
-  border-radius: 4px;
-  @include sp {
-    box-shadow: 0;
-    margin: 0;
-  }
-  &__inner {
-    margin: 0 24px;
-  }
-  &__action {
-    text-align: right;
-  }
-  &__title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    border-bottom: 1px solid #9cc3e4;
-    border-left: 8px solid #9cc3e4;
-    padding: 8px;
-  }
-  &__avatar {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin-right: 16px;
-  }
-  &__contents {
-    text-align: center;
-    padding: 60px 0 50px 0;
-    font-weight: bold;
-    border-bottom: 1px solid #dddddd;
-    margin-bottom: 24px;
-  }
-  &__form {
-    align-items: baseline;
-  }
-  &__textarea {
-    width: 100%;
   }
 }
 

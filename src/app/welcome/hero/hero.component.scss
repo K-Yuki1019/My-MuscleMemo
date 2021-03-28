@@ -1,0 +1,93 @@
+@import 'mixins';
+
+.hero {
+  width: 100vw;
+  height: 400px;
+  margin-bottom: 72px;
+  &__main-img {
+    background: url(../../../assets/images/welcome-image.jpg) no-repeat center;
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  &__left {
+    height: 75%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include tab {
+      display: none;
+    }
+  }
+  &__right {
+    height: 155%;
+    position: absolute;
+    top: 7%;
+    right: 0;
+    @include tab {
+      display: none;
+    }
+  }
+  &__titles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  &__main-title {
+    font-size: 48px;
+    color: snow;
+    margin-bottom: 8px;
+  }
+  &__sub-title {
+    color: white;
+    font-weight: 100;
+    margin-bottom: 40px;
+  }
+}
+
+// .hero {
+//   &__main-img {
+//     background: url(../../../assets/images/welcome-image.jpg) no-repeat center;
+//     background-size: cover;
+//     width: 100%;
+//     position: relative;
+//     &::before {
+//       content: '';
+//       position: absolute;
+//       top: 0;
+//       right: 0;
+//       bottom: 0;
+//       left: 0;
+//       z-index: -1;
+//       background-color: rgba(0, 0, 0, 0.3);
+//     }
+//   }
+//   // &__titles {
+//   //   position: absolute;
+//   //   bottom: 50%;
+//   //   right: 33%;
+//   //   text-align: center;
+//   // }
+//   // &__main-title {
+//   //   font-size: 48px;
+//   //   color: snow;
+//   //   margin-bottom: 8px;
+//   // }
+//   // &__sub-title {
+//   //   color: white;
+//   //   font-weight: 100;
+//   //   margin-bottom: 40px;
+//   // }
+// }

@@ -1,0 +1,35 @@
+@import 'mixins';
+
+.search {
+  position: relative;
+  flex: 1;
+  margin-right: 16px;
+  &__input {
+    box-sizing: border-box;
+    appearance: none;
+    line-height: 44px;
+    border-radius: 24px;
+    padding: 0 42px 0 16px;
+    font-size: 12px;
+    margin: 0 auto;
+    outline: none;
+    border: 1px solid #dfe1e5;
+    width: 100%;
+    @include sp {
+      display: none;
+    }
+  }
+  &__icon {
+    position: absolute;
+    right: 16px;
+    top: 2px;
+    cursor: pointer;
+    @include sp {
+      display: contents;
+    }
+  }
+}
+
+mat-icon {
+  color: rgba(0, 0, 0, 0.3);
+}

@@ -49,7 +49,7 @@
 }
 
 .form {
-  max-width: 700px;
+  max-width: 720px;
   align-items: center;
   margin: auto;
   padding: 88px 16px 24px;
@@ -75,18 +75,18 @@
     margin-bottom: 16px;
   }
   &__menu {
-    @include md {
+    @include tab {
       width: 100%;
     }
   }
   &__t-weight {
     margin-right: 16px;
-    @include md {
+    @include tab {
       width: 100%;
     }
   }
   &__rep {
-    @include md {
+    @include tab {
       width: 100%;
     }
   }
@@ -98,13 +98,16 @@
     justify-content: space-between;
     margin-bottom: 24px;
 
-    @include md {
+    @include tab {
       display: grid;
       grid-template-columns: 1fr;
     }
   }
   &__menu {
-    margin-right: 16px;
+    margin-right: 8px;
+    &:nth-child(3) {
+      margin-right: 16px;
+    }
   }
 
   &__url-wrap {

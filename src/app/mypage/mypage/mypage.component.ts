@@ -18,8 +18,7 @@ export class MypageComponent implements OnInit {
   activatedTab = 'profile';
   userTabContents = [
     { path: 'note', label: '投稿一覧' },
-    { path: 'body-history', label: '体型記録一覧' },
-    { path: 'profile', label: 'プロフィール編集' },
+    { path: 'chart', label: '記録' },
   ];
 
   user$: Observable<User>;

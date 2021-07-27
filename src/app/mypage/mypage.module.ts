@@ -4,25 +4,17 @@ import { CommonModule } from '@angular/common';
 import { MypageRoutingModule } from './mypage-routing.module';
 import { MypageComponent } from './mypage/mypage.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ProfileComponent } from './profile/profile.component';
-import { BodyImageComponent } from './body-image/body-image.component';
 import { NoteComponent } from './note/note.component';
-import { BodyImageCardComponent } from './body-image-card/body-image-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
-  declarations: [
-    MypageComponent,
-    ProfileComponent,
-    BodyImageComponent,
-    NoteComponent,
-    BodyImageCardComponent,
-  ],
+  declarations: [MypageComponent, NoteComponent, ChartComponent],
   imports: [
     CommonModule,
     MypageRoutingModule,

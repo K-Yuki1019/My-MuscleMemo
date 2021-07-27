@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import * as faker from 'faker/locale/ja';
-import { Chart } from 'chart.js';
+import { Component, OnInit } from '@angular/core';
 import { _MatRadioGroupBase } from '@angular/material/radio';
-import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Observable } from 'rxjs';
+import { NoteWithUser } from 'src/app/interfaces/note';
+import { NoteService } from 'src/app/services/note.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-card',
@@ -13,21 +14,14 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CardComponent implements OnInit {
   user$ = this.authService.user$;
 
-  fakeNoteWithUser$ = new Array(100).fill(null).map(() => {
-    return {
-      createdAt: faker.date.month(),
-      weight: faker.random.number({ min: 40, max: 100 }),
-      bodyFatPer: faker.random.number({ min: 4, max: 30 }),
-      todayMenu: faker.random.word({ min: 3, max: 12 }),
-      userName: faker.name.findName(),
-      avatarUrl: faker.image.image(),
-      likedCount: faker.random.number(50),
-      bodyImageUrl: faker.random.image(),
-      text: faker.lorem.words(30),
-    };
-  });
+  allLatestNotes$: Observable<
+    NoteWithUser[]
+  > = this.noteService.getAllNotesWithUsers().pipe(take(1));
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private noteService: NoteService
+  ) {}
 
   ngOnInit(): void {}
 }

@@ -5,12 +5,13 @@ import { Observable, combineLatest, of } from 'rxjs';
 import { firestore } from 'firebase';
 import { switchMap, map } from 'rxjs/operators';
 import { User } from '../interfaces/user';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NoteService {
-  constructor(private db: AngularFirestore) {}
+  constructor(private db: AngularFirestore, private userService: UserService) {}
 
   createNote(
     noteData: Omit<Note, 'noteId' | 'createdAt' | 'updateAt'>
@@ -102,36 +103,31 @@ export class NoteService {
   //     return this.getNotesWithUsers(sorted);
   //   }
   // }
+  jsonData: any;
 
-  // getAllNotesWithUsers(): Observable<NoteWithUser[]> {
-  //   const sorted: Observable<NoteWithUser[]> = this.db
-  //     .collection<Note>(`notes`, (ref) => {
-  //       return ref.where('isPublic', '==', 'true').orderBy('createdAt', 'desc');
-  //     })
-  //     .valueChanges();
-  //   return this.getNotesWithUsers(sorted);
-  // }
+  getAllNotesWithUsers(): Observable<NoteWithUser[]> {
+    const sorted: Observable<Note[]> = this.db
+      .collection<Note>(`notes`, (ref) => {
+        return ref
+          .where('isPublic', '==', 'true')
+          .orderBy('createdAt', 'desc')
+          .limit(20);
+      })
+      .valueChanges();
+    return this.getNotesWithUsers(sorted);
+  }
 
-  getNotesWithUsers(
-    sorted: Observable<NoteWithUser[]>
-  ): Observable<NoteWithUser[]> {
-    let notes: NoteWithUser[];
+  getNotesWithUsers(sorted: Observable<Note[]>): Observable<NoteWithUser[]> {
+    let note: Note[];
     return sorted.pipe(
-      switchMap((docs: NoteWithUser[]) => {
-        notes = docs;
-
-        if (notes.length) {
-          const uniqueUids: string[] = notes
-            .filter((note, index, array) => {
-              return (
-                array.findIndex((value) => value.userId === note.userId) ===
-                index
-              );
-            })
-            .map((note) => note.userId);
+      switchMap((docs: Note[]) => {
+        if (docs?.length) {
+          note = docs;
+          const authorIds: string[] = docs.map((post) => post.userId);
+          const authorUniqueIds: string[] = Array.from(new Set(authorIds));
           return combineLatest(
-            uniqueUids.map((id) => {
-              return this.db.doc<User>(`users/${id}`).valueChanges();
+            authorUniqueIds.map((userId) => {
+              return this.userService.getUser(userId);
             })
           );
         } else {
@@ -139,14 +135,53 @@ export class NoteService {
         }
       }),
       map((users: User[]) => {
-        return notes.map((note) => {
-          const result: NoteWithUser = {
-            ...note,
-            user: users.find((user) => user.uid === note.userId),
-          };
-          return result;
-        });
+        if (note?.length) {
+          return note.map((note: Note) => {
+            const result: NoteWithUser = {
+              ...note,
+              user: users?.find((user: User) => user.uid === note.userId),
+            };
+            return result;
+          });
+        } else {
+          return null;
+        }
       })
     );
   }
+
+  // getNotesWithUsers(sorted: Observable<Note[]>): Observable<NoteWithUser[]> {
+  //   let notes: Note[];
+  //   return sorted.pipe(
+  //     switchMap((docs: Note[]) => {
+  //       notes = docs;
+  //       if (notes.length) {
+  //         const uniqueUids: string[] = notes
+  //           .filter((note, index, array) => {
+  //             return (
+  //               array.findIndex((value) => value.userId === note.userId) ===
+  //               index
+  //             );
+  //           })
+  //           .map((note) => note.userId);
+  //         return combineLatest(
+  //           uniqueUids.map((id) => {
+  //             return this.db.doc<User>(`users/${id}`).valueChanges();
+  //           })
+  //         );
+  //       } else {
+  //         return of([]);
+  //       }
+  //     }),
+  //     map((users: User[]) => {
+  //       return notes.map((note) => {
+  //         const result: NoteWithUser = {
+  //           ...note,
+  //           user: users.find((user) => user.uid === note.userId),
+  //         };
+  //         return result;
+  //       });
+  //     })
+  //   );
+  // }
 }

@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ChartComponent } from './chart/chart.component';
 import { MypageComponent } from './mypage/mypage.component';
-import { ProfileComponent } from './profile/profile.component';
 import { NoteComponent } from './note/note.component';
-import { BodyImageComponent } from './body-image/body-image.component';
 
 const routes: Routes = [
   {
@@ -15,12 +14,8 @@ const routes: Routes = [
         component: NoteComponent,
       },
       {
-        path: 'profile',
-        component: ProfileComponent,
-      },
-      {
-        path: 'body-history',
-        component: BodyImageComponent,
+        path: 'chart',
+        component: ChartComponent,
       },
     ],
   },

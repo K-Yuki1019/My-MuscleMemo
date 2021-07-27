@@ -68,6 +68,7 @@ export class NoteService {
     );
   }
 
+  // 投稿IDによってNoteWithUserの投稿を取得する
   // getNoteWithUserByNoteId(noteId: string): Observable<NoteWithUser> {
   //   return this.db
   //     .doc(`notes/${noteId}`)
@@ -87,24 +88,6 @@ export class NoteService {
   //       })
   //     );
 
-  // getNotesWithImagesAndPublic(userId: string) {
-  //   const listRef$ = this.storage.ref(`users/${userId}`).listAll(); //userIdに基づく画像ファイルを出す
-  //   const sorted: Observable<Note[]> = this.db
-  //     .collection<Note>('notes', (ref) => {
-  //       return ref
-  //         .where('userId', '==', userId)
-  //         .where('isPublic', '==', 'true')
-  //         .orderBy('createdAt', 'desc')
-  //         .limit(100);
-  //     })
-  //     .valueChanges();
-
-  //   if (listRef$.item.length > 0) {
-  //     return this.getNotesWithUsers(sorted);
-  //   }
-  // }
-  jsonData: any;
-
   getAllNotesWithUsers(): Observable<NoteWithUser[]> {
     const sorted: Observable<Note[]> = this.db
       .collection<Note>(`notes`, (ref) => {
@@ -118,16 +101,22 @@ export class NoteService {
   }
 
   getNotesWithUsers(sorted: Observable<Note[]>): Observable<NoteWithUser[]> {
-    let note: Note[];
+    let notes: Note[];
     return sorted.pipe(
       switchMap((docs: Note[]) => {
-        if (docs?.length) {
-          note = docs;
-          const authorIds: string[] = docs.map((post) => post.userId);
-          const authorUniqueIds: string[] = Array.from(new Set(authorIds));
+        notes = docs;
+        if (notes.length) {
+          const uniqueUids: string[] = notes
+            .filter((note, index, array) => {
+              return (
+                array.findIndex((value) => value.userId === note.userId) ===
+                index
+              );
+            })
+            .map((note) => note.userId);
           return combineLatest(
-            authorUniqueIds.map((userId) => {
-              return this.userService.getUser(userId);
+            uniqueUids.map((id) => {
+              return this.db.doc<User>(`users/${id}`).valueChanges();
             })
           );
         } else {
@@ -135,38 +124,28 @@ export class NoteService {
         }
       }),
       map((users: User[]) => {
-        if (note?.length) {
-          return note.map((note: Note) => {
-            const result: NoteWithUser = {
-              ...note,
-              user: users?.find((user: User) => user.uid === note.userId),
-            };
-            return result;
-          });
-        } else {
-          return null;
-        }
+        return notes.map((note) => {
+          const result: NoteWithUser = {
+            ...note,
+            user: users.find((user) => user.uid === note.userId),
+          };
+          return result;
+        });
       })
     );
   }
 
   // getNotesWithUsers(sorted: Observable<Note[]>): Observable<NoteWithUser[]> {
-  //   let notes: Note[];
+  //   let note: Note[];
   //   return sorted.pipe(
   //     switchMap((docs: Note[]) => {
-  //       notes = docs;
-  //       if (notes.length) {
-  //         const uniqueUids: string[] = notes
-  //           .filter((note, index, array) => {
-  //             return (
-  //               array.findIndex((value) => value.userId === note.userId) ===
-  //               index
-  //             );
-  //           })
-  //           .map((note) => note.userId);
+  //       if (docs?.length) {
+  //         note = docs;
+  //         const authorIds: string[] = docs.map((post) => post.userId);
+  //         const authorUniqueIds: string[] = Array.from(new Set(authorIds));
   //         return combineLatest(
-  //           uniqueUids.map((id) => {
-  //             return this.db.doc<User>(`users/${id}`).valueChanges();
+  //           authorUniqueIds.map((userId) => {
+  //             return this.userService.getUser(userId);
   //           })
   //         );
   //       } else {
@@ -174,13 +153,17 @@ export class NoteService {
   //       }
   //     }),
   //     map((users: User[]) => {
-  //       return notes.map((note) => {
-  //         const result: NoteWithUser = {
-  //           ...note,
-  //           user: users.find((user) => user.uid === note.userId),
-  //         };
-  //         return result;
-  //       });
+  //       if (note?.length) {
+  //         return note.map((note: Note) => {
+  //           const result: NoteWithUser = {
+  //             ...note,
+  //             user: users?.find((user: User) => user.uid === note.userId),
+  //           };
+  //           return result;
+  //         });
+  //       } else {
+  //         return null;
+  //       }
   //     })
   //   );
   // }

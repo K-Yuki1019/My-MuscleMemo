@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { ChartComponent } from './chart/chart.component';
+import { SharedCardModule } from '../shared-card/shared-card.module';
 
 @NgModule({
   declarations: [MypageComponent, NoteComponent, ChartComponent],
@@ -26,6 +27,7 @@ import { ChartComponent } from './chart/chart.component';
     ReactiveFormsModule,
     FormsModule,
     MatMenuModule,
+    SharedCardModule,
   ],
 })
 export class MypageModule {}

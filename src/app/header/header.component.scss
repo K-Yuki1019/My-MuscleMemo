@@ -1,7 +1,7 @@
 @import 'mixins';
 
 .header {
-  background-color: #fff;
+  background-color: #bde6e6;
   box-shadow: 0 -3px 8px 0 rgba(0, 0, 0, 0.5);
   position: fixed;
   z-index: 100;
@@ -27,6 +27,9 @@
   &__search {
     flex: 1;
   }
+  &__menu {
+    background-color: white;
+  }
 }
 .search-icon {
   margin-right: 4px;
@@ -50,7 +53,7 @@
     margin-right: 16px;
   }
   &__item {
-    background-color: rgb(219, 226, 233);
+    background-color: white;
     border-radius: 50%;
     width: 40px;
     height: 40px;

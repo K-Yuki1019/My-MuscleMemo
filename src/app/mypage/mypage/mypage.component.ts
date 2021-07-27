@@ -15,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./mypage.component.scss'],
 })
 export class MypageComponent implements OnInit {
-  activatedTab = 'profile';
+  activatedTab = 'note';
   userTabContents = [
     { path: 'note', label: '投稿一覧' },
     { path: 'chart', label: '記録' },

@@ -1,22 +1,24 @@
+<!-- <div class="detail" >
+  <div class="card">
+    <div class="card__inner">
+      <img src="" alt="" class="card__img" />
+      <div class="card__data">
+        <div class=""></div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
 <div *ngFor="let fakes of fakeNoteWithUser$">
   <div class="detail-container">
     <div class="detail">
-      <div class="detail__left">
+      <div class="detail__inner">
         <img
           [style.background-image]="'url(' + fakes.avatarUrl + ')'"
           alt=""
           class="detail__main-image"
         />
-        <div class="actions">
-          <button mat-button class="actions__btn">
-            <mat-icon>favorite_border</mat-icon>
-            <span class="action__text">お気に入り (fav数)</span>
-          </button>
-          <button mat-button class="actions__btn">
-            <mat-icon>textsms</mat-icon>
-            <span class="action__text">コメント(com数)</span>
-          </button>
-        </div>
+
         <div class="about">
           <div class="about__inner">
             <div class="about__card-items">
@@ -41,119 +43,6 @@
                 {{ fakes.createdAt }}
               </div>
             </div>
-
-            <div class="about__card-items">
-              <h2 class="about__title">今日使った動画</h2>
-
-              <div class="about__movie-card">
-                <div class="about__movie-url">
-                  <img
-                    src="https://placehold.jp/100x70.png"
-                    alt=""
-                    class="about__movie-img"
-                  />
-                  <div class="about__movie-detail">
-                    <p class="about__movie-title">Lorem, ipsum dolor.</p>
-                    <p class="about__movie-type">Youtubeの動画 10分</p>
-                  </div>
-                </div>
-                <div class="about__movie-url">
-                  <img
-                    src="https://placehold.jp/100x70.png"
-                    alt=""
-                    class="about__movie-img"
-                  />
-                  <div class="about__movie-detail">
-                    <p class="about__movie-title">Lorem, ipsum dolor.</p>
-                    <p class="about__movie-type">Youtubeの動画 10分</p>
-                  </div>
-                </div>
-                <div class="about__movie-url">
-                  <img
-                    src="https://placehold.jp/100x70.png"
-                    alt=""
-                    class="about__movie-img"
-                  />
-                  <div class="about__movie-detail">
-                    <p class="about__movie-title">Lorem, ipsum dolor.</p>
-                    <p class="about__movie-type">Youtubeの動画 10分</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="about__card-items">
-              <h2 class="about__title">今日のメニュー</h2>
-              <div class="about__menu">
-                <div class="about__menu-detail">
-                  <div class="about__menu-item">
-                    <mat-icon inline>fitness_center</mat-icon>
-                    {{ fakes.todayMenu }}:
-                  </div>
-                  <div class="about__menu-item">10kg ×</div>
-                  <div class="about__menu-item">15 回</div>
-                </div>
-                <div class="about__menu-detail">
-                  <div class="about__menu-item">
-                    <mat-icon inline>fitness_center</mat-icon>
-                    {{ fakes.todayMenu }}:
-                  </div>
-                  <div class="about__menu-item">15kg ×</div>
-                  <div class="about__menu-item">10 回</div>
-                </div>
-                <div class="about__menu-detail">
-                  <div class="about__menu-item">
-                    <mat-icon inline>fitness_center</mat-icon>
-                    {{ fakes.todayMenu }}:
-                  </div>
-                  <div class="about__menu-item">20kg ×</div>
-                  <div class="about__menu-item">8 回</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="detail__side-menu">
-        <app-detail-comment></app-detail-comment>
-        <div class="recent-posts">
-          <h2 class="recent-posts__title">{{ fakes.userName }}の最近の投稿</h2>
-          <div class="recent-posts__cards">
-            <div class="recent-posts__card-inner">
-              <div class="recent-posts__card">
-                <img src="https://placehold.jp/175x230.png" alt="" />
-                <div class="recent-posts__footer">
-                  <button mat-button>
-                    <mat-icon>favorite_border</mat-icon>
-                    <span class="recent-posts__fav-count">14</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="recent-posts__card-inner">
-              <div class="recent-posts__card">
-                <img src="https://placehold.jp/175x230.png" alt="" />
-                <div class="recent-posts__footer">
-                  <button mat-button>
-                    <mat-icon>favorite_border</mat-icon>
-                    <span class="recent-posts__fav-count">18</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="recent-posts__card-inner">
-              <div class="recent-posts__card">
-                <img src="https://placehold.jp/175x230.png" alt="" />
-                <div class="recent-posts__footer">
-                  <button mat-button>
-                    <mat-icon>favorite_border</mat-icon>
-                    <span class="recent-posts__fav-count">4</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="recent-posts__actions">
-            <button class="recent-posts__btn">もっと見る</button>
           </div>
         </div>
       </div>

@@ -1,47 +1,52 @@
-<!-- <div class="detail" >
+<!-- <div class="detail">
   <div class="card">
     <div class="card__inner">
       <img src="" alt="" class="card__img" />
-      <div class="card__data">
-        <div class=""></div>
+      <div class="data">
+        
+        <div class="data__inner">
+          <div class="data__items">
+            <div class="data__title">隈本優希 の今日の記録</div>
+            <div class="data__value"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div> -->
 
-<div *ngFor="let fakes of fakeNoteWithUser$">
-  <div class="detail-container">
-    <div class="detail">
-      <div class="detail__inner">
-        <img
-          [style.background-image]="'url(' + fakes.avatarUrl + ')'"
-          alt=""
-          class="detail__main-image"
-        />
+<div class="container container--detail">
+  <div class="detail">
+    <div class="detail__inner">
+      <img alt="" class="detail__main-image" />
 
-        <div class="about">
-          <div class="about__inner">
-            <div class="about__card-items">
-              <h2 class="about__title">{{ fakes.userName }}の今日の記録</h2>
-              <div class="about__value">
-                <div class="about__now-value">
-                  <mat-icon inline>speed</mat-icon>
-                  体重：　{{ fakes.weight }} kg
-                </div>
-                <div class="about__lose-value">-４kg</div>
+      <div class="data">
+        <div class="data__inner">
+          <div class="data__card-items">
+            <h2 class="data__title">隈本優希 の今日の記録</h2>
+            <div class="data__value">
+              <div class="data__now-value">
+                <mat-icon inline>speed</mat-icon>
+                体重：　59 kg
               </div>
-              <div class="about__value">
-                <div class="about__now-value">
-                  <mat-icon inline>speed</mat-icon>
-                  体脂肪率：　{{ fakes.bodyFatPer }} %
-                </div>
-                <div class="about__lose-value">-1%</div>
+              <div class="data__lose-value">-４kg</div>
+            </div>
+            <div class="data__value">
+              <div class="data__now-value">
+                <mat-icon inline>speed</mat-icon>
+                体脂肪率：　23 %
               </div>
-              <p class="about__description">{{ fakes.text }}</p>
-              <div class="about__time">
-                <mat-icon inline>access_time</mat-icon>
-                {{ fakes.createdAt }}
-              </div>
+              <div class="data__lose-value">-1%</div>
+            </div>
+            <p class="data__description">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque
+              in, dolorem velit nulla labore, nisi commodi corrupti temporibus
+              placeat ut blanditiis illum assumenda vero repellendus quisquam
+              provident, sunt aut consequatur?
+            </p>
+            <div class="data__time">
+              <mat-icon inline>access_time</mat-icon>
+              2021年 10月 19日 11:45:39
             </div>
           </div>
         </div>

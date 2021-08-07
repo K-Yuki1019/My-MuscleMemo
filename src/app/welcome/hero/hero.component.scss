@@ -1,5 +1,27 @@
 @import 'mixins';
 @import 'variables';
+@keyframes move-wave1 {
+  0% {
+    transform: translateX(100%) translateZ(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  100% {
+    transform: translateX(-100%) translateZ(0) scaleY(1);
+  }
+}
+@keyframes move-wave2 {
+  0% {
+    transform: translateX(100%) translateZ(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(0%) translateZ(0) scaleY(1);
+  }
+  100% {
+    transform: translateX(-100%) translateZ(0) scaleY(1);
+  }
+}
 
 .hero {
   background-color: $main-color;
@@ -8,7 +30,6 @@
     position: relative;
     @include sp {
       margin-bottom: 60px;
-      height: 160px;
     }
   }
   &__title {
@@ -31,28 +52,63 @@
   }
   &__wave1 {
     position: absolute;
-    transform: rotate(180deg);
-    bottom: -24%;
+    bottom: -32%;
+    opacity: 0.6;
+
     @include mid {
       bottom: -24%;
+    }
+    @include sp {
+      bottom: -16%;
     }
   }
   &__wave2 {
     position: absolute;
-    transform: rotate(180deg);
-    bottom: -48%;
+    bottom: -32%;
+    &:first-child {
+      animation: move-wave1 20s -10s linear infinite;
+    }
+    &:last-child {
+      animation: move-wave2 20s linear infinite;
+    }
     @include mid {
       bottom: -40%;
+    }
+    @include sp {
+      bottom: -28%;
     }
   }
   &__wave3 {
     position: absolute;
-    transform: rotate(180deg);
+    &:first-child {
+      animation: move-wave1 25s -12.5s linear infinite;
+    }
+    &:last-child {
+      animation: move-wave2 25s linear infinite;
+    }
     bottom: -48%;
     @include mid {
       bottom: -40%;
     }
+    @include sp {
+      bottom: -32%;
+    }
   }
+}
+// .wave-top {
+//   display: flex;
+//   width: 100%;
+//   overflow: hidden;
+// }
+.wave-middle {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+.wave-bottom {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
 }
 
 // .hero {

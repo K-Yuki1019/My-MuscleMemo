@@ -91,10 +91,7 @@ export class NoteService {
   getAllNotesWithUsers(): Observable<NoteWithUser[]> {
     const sorted: Observable<Note[]> = this.db
       .collection<Note>(`notes`, (ref) => {
-        return ref
-          .where('isPublic', '==', 'true')
-          .orderBy('createdAt', 'desc')
-          .limit(20);
+        return ref.orderBy('createdAt', 'desc').limit(20);
       })
       .valueChanges();
     return this.getNotesWithUsers(sorted);

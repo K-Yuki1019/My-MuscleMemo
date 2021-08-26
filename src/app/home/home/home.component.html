@@ -1,5 +1,9 @@
-<div class="wrapper">
-  <div class="card-container">
-    <app-shared-card></app-shared-card>
+<ng-container *ngIf="notes$ | async as notes">
+  <div class="wrapper">
+    <div class="card-container">
+      <ng-container *ngFor="let note of notes">
+        <app-shared-card *ngIf="note" [note]="note"></app-shared-card>
+      </ng-container>
+    </div>
   </div>
-</div>
+</ng-container>

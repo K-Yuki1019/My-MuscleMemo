@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { NoteWithUser } from 'src/app/interfaces/note';
 import { AuthService } from 'src/app/services/auth.service';
 import { NoteService } from 'src/app/services/note.service';
@@ -11,16 +10,9 @@ import { NoteService } from 'src/app/services/note.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  user$ = this.authService.user$;
+  notes$: Observable<NoteWithUser[]>;
 
-  allLatestNotes$: Observable<
-    NoteWithUser[]
-  > = this.noteService.getAllNotesWithUsers().pipe(take(1));
-
-  constructor(
-    private authService: AuthService,
-    private noteService: NoteService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 }
